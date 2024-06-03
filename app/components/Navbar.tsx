@@ -10,7 +10,7 @@ export default function Navbar() {
             Home</Link></li>
           <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><Link to="/about">
             About</Link></li>
-          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="https://briansmiley.github.io/p5">
+          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="/projects">
             Portfolio</a></li>
           <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="https://github.com/briansmiley">
             Github</a></li>
