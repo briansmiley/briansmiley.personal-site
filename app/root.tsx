@@ -1,4 +1,5 @@
 import type { LinksFunction } from "@remix-run/node";
+import Navbar from "~/components/Navbar";
 
 import {
   Links,
@@ -22,6 +23,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Navbar/>
         {children}
         <ScrollRestoration />
         <Scripts />

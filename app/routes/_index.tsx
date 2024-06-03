@@ -7,21 +7,12 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-const Header = () => {
-  return(
-  <header>
-    <nav>
-      <ul className="font-semibold text-blue-400 underline">
-        <li><a href="./about">About</a></li>
-        <li><a href="https://briansmiley.github.io/p5">Portfolio</a></li>
-        <li><a href="https://github.com/briansmiley">Github</a></li>
-        <li><a href="https://www.linkedin.com/in/brian-smiley-1289a6121/">LinkedIn</a></li>
-      </ul>
-    </nav>
-  </header>)}
+
 
 export default function Index() {
   return (
-    <Header/>
+    <div>
+      <h1 className="font-bold text-5xl">Homepage</h1>
+    </div>
   );
 }
