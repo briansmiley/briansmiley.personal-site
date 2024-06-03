@@ -55,27 +55,33 @@ const projects = [
         url: "https://briansmiley.github.io/p5/bitmapper"
     },
 ]
-export default function ProjectCarousel() {
+function ProjectCarousel() {
     return (
-        <div className="flex justify-center">
-            <Carousel className="w-[75%]">
-                <CarouselContent>
-                    {projects.map((project, idx) => (
-                        <CarouselItem className="basis-1/3" key={idx}>
-                            <div className="p-1">
-                            <Link to={project.url}><Card>
-                                    <CardHeader className="flex items-center justify-center p-6"><span><a href={project.url}>{project.title}</a></span></CardHeader>
-                                    <CardContent ><img src={project.thumbnail}></img>
-                                    </CardContent>
-                                </Card></Link>
-                            </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-            </Carousel>
-        </div>
+            <div className="flex flex-col items-center bg-gray-400 rounded-lg w-[65%] py-5">
+                <h1 className="font-bold text-5xl mb-3"><a href="https://p5js.org/" className=" text-red-600 underline">p5.js</a><span className="text-black"> Sketches</span></h1>
+                <Carousel className="w-[85%] p-10">
+                    <CarouselContent>
+                        {projects.map((project, idx) => (
+                            <CarouselItem className="basis-1/3" key={idx}>
+                                <div className="p-1">
+                                <Link to={project.url}><Card>
+                                        <CardHeader className="flex items-center justify-center p-6"><span><a href={project.url}>{project.title}</a></span></CardHeader>
+                                        <CardContent ><img src={project.thumbnail}></img>
+                                        </CardContent>
+                                    </Card></Link>
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious />
+                    <CarouselNext />
+                </Carousel>
+            </div>
     )
 }
 
+export default function ProjectPage() {
+    return (
+        <div className="mt-5 flex flex-col items-center"><ProjectCarousel/></div>
+    )
+}
