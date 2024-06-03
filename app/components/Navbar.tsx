@@ -8,7 +8,7 @@ export default function Navbar() {
         <ul className="font-semibold text-blue-200 underline flex justify-start h-full">
           <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><Link to="/">
             Home</Link></li>
-          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><Link to="/Linkbout">
+          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><Link to="/bout">
             About</Link></li>
           <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><Link to="https://briansmiley.github.io/p5">
             Portfolio</Link></li>
@@ -20,4 +20,3 @@ export default function Navbar() {
       </nav>
     </header>)
     } 
-
