@@ -5,7 +5,7 @@ export default function About() {
             <p>
                 Hi I'm Brian
             </p>
-            <img src="/public/brian.jpg" className="object-scale-down" alt="Brian"/>
+            <img src="/brian.jpg" className="object-scale-down w-[500px]" alt="Brian"/>
         </div>
     )
 }
