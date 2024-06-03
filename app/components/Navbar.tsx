@@ -5,7 +5,7 @@ export default function Navbar() {
         <ul className="font-semibold text-blue-200 underline flex justify-start h-full">
           <a href="/">
             <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1">Home</li></a>
-          <a href="./about">
+          <a href="/about">
             <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1">About</li></a>
           <a href="https://briansmiley.github.io/p5">
             <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1">Portfolio</li></a>
