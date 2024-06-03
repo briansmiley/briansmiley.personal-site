@@ -12,10 +12,10 @@ export default function Navbar() {
             About</Link></li>
           <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><Link to="/projects">
             Portfolio</Link></li>
-          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="https://github.com/briansmiley">
+          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="https://github.com/briansmiley" rel="noopener noreferrer">
             Github</a></li>
-          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="https://www.linkedin.com/in/brian-smiley-1289a6121/">
-            LinkedIn</a></li>
+          <li className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1"><a href="https://www.linkedin.com/in/brian-smiley-1289a6121/" rel="noopener noreferrer">
+            LinkedIn</a></li> 
         </ul>
       </nav>
     </header>)
