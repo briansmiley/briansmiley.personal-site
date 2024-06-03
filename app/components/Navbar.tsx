@@ -9,9 +9,8 @@ type NavBarItemProps = {
 function NavBarLink({label, url, key, internal = true}: NavBarItemProps) {
   return (
     <li key={key} className="flex items-center hover:bg-blue-500 w-fit h-full pr-2 pl-1">
-      
-      {internal ? <Link to={url}>{label}</Link> : <a href={url}></a>}
-      </li>
+      {internal ? <Link to={url}>{label}</Link> : <a href={url} rel="noopener noreferrer" target="_blank">{label}</a>}
+    </li>
   )
 }
 const links = [
@@ -33,12 +32,12 @@ const links = [
   {
     label: "Github",
     url: "https://github.com/briansmiley",
-    internal: true
+    internal: false
   },
   {
     label: "LinkedIn",
     url: "https://www.linkedin.com/in/brian-smiley-1289a6121/",
-    internal: true
+    internal: false
   },
 ]
 export default function Navbar() {
