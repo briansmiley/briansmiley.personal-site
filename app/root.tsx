@@ -6,16 +6,19 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration,
+  ScrollRestoration
 } from "@remix-run/react";
 
 import stylesheet from "~/tailwind.css?url";
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: stylesheet }
 ];
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className="w-full h-full bg-gradient-to-br from-teal-800 to-blue-900"
+    >
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +26,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <Navbar/>
+        <Navbar />
         {children}
         <ScrollRestoration />
         <Scripts />
