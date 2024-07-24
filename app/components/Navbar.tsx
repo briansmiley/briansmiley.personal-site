@@ -1,12 +1,26 @@
 import { Link } from "@remix-run/react";
-
+import {
+  faLinkedin,
+  faGithub,
+  IconDefinition,
+  faXTwitter
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 type NavBarItemProps = {
   label: string;
+  icon?: IconDefinition;
   url: string;
   key: string;
   internal: boolean;
 };
-function NavBarLink({ label, url, key, internal = true }: NavBarItemProps) {
+function NavBarLink({
+  label,
+  icon,
+  url,
+  key,
+  internal = true
+}: NavBarItemProps) {
+  const iconElement = icon ? <FontAwesomeIcon icon={icon} /> : null;
   return (
     <li
       key={key}
@@ -16,7 +30,7 @@ function NavBarLink({ label, url, key, internal = true }: NavBarItemProps) {
         <Link to={url}>{label}</Link>
       ) : (
         <a href={url} rel="noopener noreferrer" target="_blank">
-          {label}
+          {icon ? iconElement : label}
         </a>
       )}
     </li>
@@ -39,13 +53,21 @@ const links = [
     internal: true
   },
   {
-    label: "Github",
+    label: "GitHub",
+    icon: faGithub,
     url: "https://github.com/briansmiley",
     internal: false
   },
   {
     label: "LinkedIn",
+    icon: faLinkedin,
     url: "https://www.linkedin.com/in/brian-smiley-1289a6121/",
+    internal: false
+  },
+  {
+    label: "X",
+    icon: faXTwitter,
+    url: "https://www.x.com/binarysmile",
     internal: false
   }
 ];
@@ -54,9 +76,9 @@ export default function Navbar() {
     <header className="h-12 bg-indigo-500">
       <nav className="h-full flex justify-center ">
         <ul className="font-semibold text-blue-200 underline flex items-center justify-between gap-2 h-full">
-          {links.map((link, idx) =>
-            NavBarLink(Object.assign(link, { key: String(idx) }))
-          )}
+          {links.map((link, idx) => (
+            <NavBarLink key={String(idx)} {...link} />
+          ))}
         </ul>
       </nav>
     </header>

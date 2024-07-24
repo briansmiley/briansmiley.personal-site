@@ -42,8 +42,8 @@ export default function ProjectCarousel({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="bg-slate-500 hover:bg-slate-600 animate-all duration-300 text-white border-none" />
+      <CarouselNext className="bg-slate-500 hover:bg-slate-600 animate-all duration-300 text-white border-none" />
     </Carousel>
   );
 }
