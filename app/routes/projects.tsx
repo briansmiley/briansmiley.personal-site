@@ -35,15 +35,19 @@ const p5Projects: Project[] = [
 
 export default function Projects() {
   return (
-    <div className="mt-5 flex flex-col items-center">
-      <div className="flex flex-col items-center w-[65%] py-5">
-        <h1 className="font-bold text-3xl">
+    <div className="flex flex-col w-full h-full items-center mt-5">
+      {/* p5 carousel */}
+      <div className="flex flex-col items-center w-[90vw] py-5 h-full">
+        <h1 className="font-bold fixed translate-y-2 text-3xl">
           <a href="https://p5js.org/" className=" text-red-600 underline">
             p5.js
           </a>
           <span className="text-black"> Sketches</span>
         </h1>
-        <ProjectCarousel projects={p5Projects} />
+        <div className="relative flex flex-col items-center w-[90vw] h-full py-12 justify-center">
+          <div className="h-full w-full absolute bg-slate-200 opacity-50 -z-10 rounded-full"></div>
+          <ProjectCarousel className="" projects={p5Projects} />
+        </div>
       </div>
     </div>
   );

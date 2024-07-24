@@ -14,16 +14,20 @@ export interface Project {
 }
 interface ProjectCarouselProps {
   projects: Project[];
+  className?: string;
 }
-export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
+export default function ProjectCarousel({
+  projects,
+  className
+}: ProjectCarouselProps) {
   return (
-    <Carousel className="w-[85%] p-2">
+    <Carousel className={`${className} w-[75%] p-2`}>
       <CarouselContent>
         {projects.map((project, idx) => (
           <CarouselItem className="basis-1/3" key={idx}>
             <div className="p-1">
               <Link to={project.url}>
-                <Card>
+                <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 border-none text-slate-200 shadow-lg">
                   <CardHeader className="flex items-center justify-center p-6">
                     <span>
                       <a href={project.url}>{project.title}</a>
