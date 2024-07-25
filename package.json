@@ -11,6 +11,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-brands-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@netlify/functions": "^2.7.0",
     "@netlify/remix-adapter": "^2.4.0",
     "@radix-ui/react-slot": "^1.0.2",

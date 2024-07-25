@@ -1,87 +1,60 @@
-type ProjectProps = {
-    title: string;
-    thumbnail: string;
-    url: string;
-}
-import { Link } from "@remix-run/react";
+import ProjectCarousel, { Project } from "~/components/ProjectCarousel";
 
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "~/components/ui/card"
-  import { Button } from "~/components/ui/button"
+const p5Projects: Project[] = [
+  {
+    title: "Ricochet Robots",
+    thumbnail: "thumbnails/robots.png",
+    blurb: "A multiplayer implementation of the boardgame Ricochet Robots",
+    url: "https://briansmiley.github.io/p5/ricochetrobots"
+  },
+  {
+    title: "Binary Tree",
+    thumbnail: "thumbnails/binarytree.png",
+    blurb: "Renders a parametric binary tree",
+    url: "https://briansmiley.github.io/p5/binarytree"
+  },
+  {
+    title: "Drops",
+    thumbnail: "thumbnails/drops_color.png",
+    blurb: "Spreading drop ripple animation",
+    url: "https://briansmiley.github.io/p5/drops"
+  },
+  {
+    title: "Voronoi",
+    thumbnail: "thumbnails/voronoi.png",
+    blurb: "Voronoi diagram animation",
+    url: "https://briansmiley.github.io/p5/voronoi"
+  },
+  {
+    title: "Pong",
+    thumbnail: "thumbnails/pong.png",
+    blurb: "A classic Pong game",
+    url: "https://briansmiley.github.io/p5/pong"
+  },
+  {
+    title: "BitMapper",
+    thumbnail: "thumbnails/bitmapper.png",
+    blurb: "Create pixel-wise characters to make your own font",
+    url: "https://briansmiley.github.io/p5/bitmapper"
+  }
+];
 
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "~/components/ui/carousel"
-
-const projects = [
-    {
-        title: "Ricochet Robots",
-        thumbnail: "thumbnails/robots.png",
-        url: "https://briansmiley.github.io/p5/ricochetrobots"
-    },
-    {
-        title: "Binary Tree",
-        thumbnail: "thumbnails/binarytree.png",
-        url: "https://briansmiley.github.io/p5/binarytree"
-    },
-    {
-        title: "Drops",
-        thumbnail: "thumbnails/drops_color.png",
-        url: "https://briansmiley.github.io/p5/drops"
-    },
-    {
-        title: "Voronoi",
-        thumbnail: "thumbnails/voronoi.png",
-        url: "https://briansmiley.github.io/p5/voronoi"
-    },
-    {
-        title: "Pong",
-        thumbnail: "thumbnails/pong.png",
-        url: "https://briansmiley.github.io/p5/pong"
-    },
-    {
-        title: "BitMapper",
-        thumbnail: "thumbnails/bitmapper.png",
-        url: "https://briansmiley.github.io/p5/bitmapper"
-    },
-]
-function ProjectCarousel() {
-    return (
-            <div className="flex flex-col items-center bg-gray-400 rounded-lg w-[65%] py-5">
-                <h1 className="font-bold text-5xl mb-3"><a href="https://p5js.org/" className=" text-red-600 underline">p5.js</a><span className="text-black"> Sketches</span></h1>
-                <Carousel className="w-[85%] p-10">
-                    <CarouselContent>
-                        {projects.map((project, idx) => (
-                            <CarouselItem className="basis-1/3" key={idx}>
-                                <div className="p-1">
-                                <Link to={project.url}><Card>
-                                        <CardHeader className="flex items-center justify-center p-6"><span><a href={project.url}>{project.title}</a></span></CardHeader>
-                                        <CardContent ><img src={project.thumbnail}></img>
-                                        </CardContent>
-                                    </Card></Link>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
-                </Carousel>
-            </div>
-    )
-}
-
-export default function ProjectPage() {
-    return (
-        <div className="mt-5 flex flex-col items-center"><ProjectCarousel/></div>
-    )
+export default function Projects() {
+  return (
+    <div className="flex flex-col w-full h-full items-center mt-5">
+      {/* p5 carousel */}
+      <div className="relative flex flex-col items-center w-[90vw] h-full">
+        <h1 className="font-bold absolute top-2 text-3xl z-10">
+          <a href="https://p5js.org/" className=" text-red-600 underline">
+            p5.js
+          </a>
+          <span className="text-black"> Sketches</span>
+        </h1>
+        <div className="relative flex flex-col items-center w-[90vw] h-full py-12 justify-center">
+          <div className="h-full w-full absolute bg-indigo-300 opacity-50 -z-10 rounded-[25px] sm:rounded-[50px] md:rounded-[100px] transition-all duration-300 hover:scale-110"></div>
+          <ProjectCarousel className="" projects={p5Projects} />
+        </div>
+      </div>
+    </div>
+  );
 }
