@@ -1,4 +1,7 @@
-import ProjectCarousel, { Project } from "~/components/ProjectCarousel";
+import ProjectCarousel, {
+  Project,
+  EmblaCarousel
+} from "~/components/ProjectCarousel";
 
 const p5Projects: Project[] = [
   {
@@ -43,16 +46,18 @@ export default function Projects() {
   return (
     <div className="flex flex-col w-full h-full items-center mt-5">
       {/* p5 carousel */}
-      <div className="relative flex flex-col items-center w-[90vw] h-full">
-        <h1 className="font-bold absolute top-2 text-3xl z-10">
-          <a href="https://p5js.org/" className=" text-red-600 underline">
-            p5.js
-          </a>
-          <span className="text-black"> Sketches</span>
-        </h1>
-        <div className="relative flex flex-col items-center w-[90vw] h-full py-12 justify-center">
-          <div className="h-full w-full absolute bg-indigo-300 opacity-50 -z-10 rounded-[25px] sm:rounded-[50px] md:rounded-[100px] transition-all duration-300 hover:scale-110"></div>
-          <ProjectCarousel className="" projects={p5Projects} />
+      <div className="relative flex flex-col items-center w-[90vw] h-[30%]">
+        <div className="relative flex flex-col items-center p-4">
+          <div className="h-full w-full absolute inset-0 bg-indigo-300 opacity-50 -z-10 rounded-[25px] sm:rounded-[50px] md:rounded-[100px] transition-all duration-300 hover:scale-110"></div>
+          <h1 className="font-bold text-3xl h-12">
+            <a href="https://p5js.org/" className=" text-red-600 underline">
+              p5.js
+            </a>
+            <span className="text-black"> Sketches</span>
+          </h1>
+          {/* <ProjectCarousel className="" projects={p5Projects} /> */}
+          <EmblaCarousel className="" projects={p5Projects} />
+          <div className="h-12"></div>
         </div>
       </div>
     </div>
