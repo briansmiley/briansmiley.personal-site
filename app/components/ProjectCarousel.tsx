@@ -8,7 +8,7 @@ export interface Project {
   blurb: string;
   url: string;
 }
-interface ProjectCarouselProps {
+interface EmblaCarouselProps {
   projects: Project[];
   className?: string;
 }
@@ -16,7 +16,7 @@ interface ProjectCarouselProps {
 export function EmblaCarousel({
   projects,
   className = ""
-}: ProjectCarouselProps) {
+}: EmblaCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -27,7 +27,7 @@ export function EmblaCarousel({
   }, [emblaApi]);
   return (
     <div
-      className={`${className} embla flex justify-between items-center gap-2 h-[300px]`}
+      className={`${className} embla flex justify-between items-center h-[60%] gap-2 `}
     >
       <button
         className="embla__prev bg-slate-200 bg-opacity-50 hover:bg-slate-300 rounded-full p-1.5 transition-all duration-300"
@@ -35,7 +35,7 @@ export function EmblaCarousel({
       >
         <ArrowLeft className="h-4 w-4" />
       </button>
-      <div className="embla__viewport overflow-hidden h-full" ref={emblaRef}>
+      <div className="embla__viewport overflow-hidden h-full " ref={emblaRef}>
         <div className="embla_container flex h-full gap-3 justify-between">
           {projects.map((project, idx) => (
             <div
@@ -43,7 +43,7 @@ export function EmblaCarousel({
               key={project.title}
             >
               <Link to={project.url}>
-                <div className="relative h-full  group">
+                <div className="relative h-full group">
                   <div className="absolute z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex items-center justify-center text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
                     <p className="text-xs sm:text-base md:text-lg">
                       <p className="underline">{project.title}</p>
