@@ -1,7 +1,4 @@
-import ProjectCarousel, {
-  Project,
-  EmblaCarousel
-} from "~/components/ProjectCarousel";
+import { Project, EmblaProjectCarousel } from "~/components/ProjectCarousel";
 
 const p5Projects: Project[] = [
   {
@@ -55,7 +52,7 @@ export default function Projects() {
           <span className="text-black"> Sketches</span>
         </h1>
         {/* <ProjectCarousel className="" projects={p5Projects} /> */}
-        <EmblaCarousel className="basis-4/6" projects={p5Projects} />
+        <EmblaProjectCarousel className="basis-4/6" projects={p5Projects} />
       </div>
     </div>
   );

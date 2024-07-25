@@ -8,15 +8,15 @@ export interface Project {
   blurb: string;
   url: string;
 }
-interface EmblaCarouselProps {
+interface EmblaProjectCarouselProps {
   projects: Project[];
   className?: string;
 }
 
-export function EmblaCarousel({
+export function EmblaProjectCarousel({
   projects,
   className = ""
-}: EmblaCarouselProps) {
+}: EmblaProjectCarouselProps) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -36,18 +36,20 @@ export function EmblaCarousel({
         <ArrowLeft className="h-4 w-4" />
       </button>
       <div className="embla__viewport overflow-hidden h-full " ref={emblaRef}>
-        <div className="embla_container flex h-full gap-3 justify-between">
+        <div className="embla_container flex h-full justify-between ">
           {projects.map((project, idx) => (
             <div
-              className="embla__slide grow-0 shrink-0 min-w-0"
+              className="embla__slide ml-5 grow-0 shrink-0 min-w-0"
               key={project.title}
             >
               <Link to={project.url}>
                 <div className="relative h-full group">
-                  <div className="absolute z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex items-center justify-center text-white text-center opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
+                  <div className="absolute z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex items-center justify-center text-white text-center opacity-0  group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-1000">
                     <p className="text-xs sm:text-base md:text-lg">
-                      <p className="underline">{project.title}</p>
-                      <p>{project.blurb}</p>
+                      <p className="underline text-l font-semibold">
+                        {project.title}
+                      </p>
+                      <p className="text-sm">{project.blurb}</p>
                     </p>
                   </div>
                   <img
