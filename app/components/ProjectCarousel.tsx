@@ -47,14 +47,14 @@ export function EmblaProjectCarousel({
             >
               <Link to={project.url} rel="noopener noreferrer" target="_blank">
                 <div className="relative h-full group">
-                  {/* <div className="absolute @container z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex flex-col items-center justify-center text-white text-center opacity-0  group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-1000">
+                  <div className="absolute @container z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex flex-col items-center justify-center text-white text-center opacity-0  group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-1000">
                     <p className="underline text-sm @[150px]:text-lg font-semibold">
                       {project.title}
                     </p>
                     <p className="text-xs @[150px]:text-sm">{project.blurb}</p>
-                  </div> */}
+                  </div>
                   <img
-                    className="group-hover:scale-90 group-hover:rounded-[999px] h-full w-full object-contain rounded-[0px] transition-all duration-1000"
+                    className="group-hover:scale-90 group-hover:rounded-[999px] h-full rounded-[0px] transition-all duration-1000"
                     src={project.thumbnail}
                     alt={project.title}
                   ></img>
