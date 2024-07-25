@@ -57,6 +57,12 @@ const links = [
 ];
 const IconLinks = [
   {
+    label: "X",
+    icon: faXTwitter,
+    url: "https://www.x.com/binarysmile",
+    internal: false
+  },
+  {
     label: "GitHub",
     icon: faGithub,
     url: "https://github.com/briansmiley",
@@ -67,25 +73,18 @@ const IconLinks = [
     icon: faLinkedin,
     url: "https://www.linkedin.com/in/brian-smiley-1289a6121/",
     internal: false
-  },
-  {
-    label: "X",
-    icon: faXTwitter,
-    url: "https://www.x.com/binarysmile",
-    internal: false
   }
 ];
 export default function Navbar() {
   return (
     <header className="h-12 bg-indigo-500">
-      <nav className="h-full flex justify-center relative">
-        <div> </div>
-        <ul className="font-semibold text-blue-200 underline flex items-center justify-between gap-2 h-full">
+      <nav className="h-full flex justify-between ">
+        <ul className="font-semibold text-blue-200 underline flex items-center justify-between  h-full">
           {links.map((link, idx) => (
             <NavBarLink key={String(idx)} {...link} />
           ))}
         </ul>
-        <ul className="absolute right-2 flex items-center justify-between gap-2 h-full ml-auto">
+        <ul className="flex items-center gap-2 h-full px-2 ">
           {IconLinks.map((link, idx) => (
             <a
               key={String(idx)}
@@ -94,7 +93,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <FontAwesomeIcon icon={link.icon} className=" h-4 w-4" />
+              <FontAwesomeIcon icon={link.icon} className=" h-5 w-5" />
             </a>
           ))}
         </ul>
