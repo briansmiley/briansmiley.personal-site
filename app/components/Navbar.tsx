@@ -15,12 +15,14 @@ type NavBarItemProps = {
 };
 function NavBarLink({
   label,
-  icon,
   url,
+  icon,
   key,
   internal = true
 }: NavBarItemProps) {
-  const iconElement = icon ? <FontAwesomeIcon icon={icon} /> : null;
+  const iconElement = icon ? (
+    <FontAwesomeIcon icon={icon} className="h-4 w-4" />
+  ) : null;
   return (
     <li
       key={key}
@@ -51,7 +53,9 @@ const links = [
     label: "Portfolio",
     url: "/projects",
     internal: true
-  },
+  }
+];
+const IconLinks = [
   {
     label: "GitHub",
     icon: faGithub,
@@ -74,10 +78,24 @@ const links = [
 export default function Navbar() {
   return (
     <header className="h-12 bg-indigo-500">
-      <nav className="h-full flex justify-center ">
+      <nav className="h-full flex justify-center relative">
+        <div> </div>
         <ul className="font-semibold text-blue-200 underline flex items-center justify-between gap-2 h-full">
           {links.map((link, idx) => (
             <NavBarLink key={String(idx)} {...link} />
+          ))}
+        </ul>
+        <ul className="absolute right-2 flex items-center justify-between gap-2 h-full ml-auto">
+          {IconLinks.map((link, idx) => (
+            <a
+              key={String(idx)}
+              className="text-blue-200 hover:text-blue-300"
+              href={link.url}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={link.icon} className=" h-4 w-4" />
+            </a>
           ))}
         </ul>
       </nav>
