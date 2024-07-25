@@ -45,7 +45,7 @@ export function EmblaProjectCarousel({
               className="embla__slide ml-5 grow-0 shrink-0 min-w-0"
               key={project.title}
             >
-              <Link to={project.url}>
+              <Link to={project.url} rel="noopener noreferrer" target="_blank">
                 <div className="relative h-full group">
                   <div className="absolute @container z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex flex-col items-center justify-center text-white text-center opacity-0  group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-1000">
                     <p className="underline text-sm @[150px]:text-lg font-semibold">
