@@ -25,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="w-full h-full">
+      <body className="w-full h-full fixed">
         <Navbar />
         {children}
         <ScrollRestoration />
