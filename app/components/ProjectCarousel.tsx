@@ -37,7 +37,7 @@ export function EmblaProjectCarousel({
       </button>
       <div className="embla__viewport overflow-hidden h-full " ref={emblaRef}>
         <div className="embla_container flex h-full justify-between ">
-          {projects.map((project, idx) => (
+          {projects.map(project => (
             <div
               className="embla__slide ml-5 grow-0 shrink-0 min-w-0"
               key={project.title}
