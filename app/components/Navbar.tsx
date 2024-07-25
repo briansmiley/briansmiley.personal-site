@@ -77,9 +77,9 @@ const IconLinks = [
 ];
 export default function Navbar() {
   return (
-    <header className="h-12 bg-indigo-500">
+    <header className="h-12 bg-indigo-500 ">
       <nav className="h-full flex justify-between ">
-        <ul className="font-semibold text-blue-200 underline flex items-center justify-between  h-full">
+        <ul className="font-semibold text-blue-200 underline flex items-center justify-between overflow-x-auto h-full">
           {links.map((link, idx) => (
             <NavBarLink key={String(idx)} {...link} />
           ))}
