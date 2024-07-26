@@ -26,7 +26,7 @@ function NavBarLink({
   return (
     <li
       key={key}
-      className="flex items-center hover:bg-blue-500 rounded-xl  w-fit h-[70%] px-2 py-1 md:px-4 transition-all duration-300"
+      className="flex items-center text-base md:text-lg lg:text-xl hover:bg-blue-500 rounded-xl  w-fit h-[70%] px-2 py-1 md:px-4 transition-all duration-300"
     >
       {internal ? (
         <Link to={url}>{label}</Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
             <NavBarLink key={String(idx)} {...link} />
           ))}
         </ul>
-        <ul className="flex items-center gap-2 h-full ">
+        <ul className="flex items-center gap-2 md:gap-4 lg:gap-6 h-full transition-all duration-300">
           {IconLinks.map((link, idx) => (
             <a
               key={String(idx)}
@@ -93,7 +93,10 @@ export default function Navbar() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <FontAwesomeIcon icon={link.icon} className=" h-5 w-5" />
+              <FontAwesomeIcon
+                icon={link.icon}
+                className=" h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 transition-all duration-300"
+              />
             </a>
           ))}
         </ul>
