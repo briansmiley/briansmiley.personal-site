@@ -26,7 +26,7 @@ function NavBarLink({
   return (
     <li
       key={key}
-      className="flex items-center text-base md:text-lg lg:text-xl hover:bg-blue-500 rounded-xl  w-fit h-[70%] px-2 py-1 md:px-4 transition-all duration-300"
+      className="flex items-center text-base md:text-lg lg:text-xl hover:bg-blue-500  w-fit h-full px-2 py-1 md:px-4 transition-all duration-300"
     >
       {internal ? (
         <Link to={url}>{label}</Link>
@@ -50,7 +50,7 @@ const links = [
     internal: true
   },
   {
-    label: "Portfolio",
+    label: "Projects",
     url: "/projects",
     internal: true
   }

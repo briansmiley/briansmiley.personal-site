@@ -4,37 +4,38 @@ export const p5Projects: Project[] = [
   {
     title: "Ricochet Robots",
     thumbnail: "thumbnails/robots.png",
-    blurb: "A multiplayer implementation of the boardgame Ricochet Robots",
+    blurb:
+      "A multiplayer implementation of the boardgame Ricochet Robots; made in p5.js",
     url: "https://briansmiley.github.io/p5/ricochetrobots"
   },
   {
     title: "Binary Tree",
     thumbnail: "thumbnails/binarytree.png",
-    blurb: "Renders a parametric binary tree",
+    blurb: "Renders a parametric binary tree; made in p5.js",
     url: "https://briansmiley.github.io/p5/binarytree"
   },
   {
     title: "Drops",
     thumbnail: "thumbnails/drops_color.png",
-    blurb: "Spreading drop ripple animation",
+    blurb: "Spreading drop ripple animation; made in p5.js",
     url: "https://briansmiley.github.io/p5/drops"
   },
   {
     title: "Voronoi",
     thumbnail: "thumbnails/voronoi.png",
-    blurb: "Voronoi diagram animation",
+    blurb: "Voronoi diagram animation; made in p5.js",
     url: "https://briansmiley.github.io/p5/voronoi"
   },
   {
     title: "Pong",
     thumbnail: "thumbnails/pong.png",
-    blurb: "A classic Pong game",
+    blurb: "A classic Pong game; made in p5.js",
     url: "https://briansmiley.github.io/p5/pong"
   },
   {
     title: "BitMapper",
     thumbnail: "thumbnails/bitmapper.png",
-    blurb: "Create pixel-wise characters to make your own font",
+    blurb: "Create pixel-wise characters to make your own font; made in p5.js",
     url: "https://briansmiley.github.io/p5/bitmapper"
   }
 ];
