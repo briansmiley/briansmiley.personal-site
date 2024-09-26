@@ -78,7 +78,7 @@ export const offlineProjects: Project[] = [
   {
     title: "Terminal Life",
     thumbnail: "thumbnails/curses.png",
-    blurb: "Text based Conway's Game of life; python terminal script",
+    blurb: "Python terminal script for an ASCII based Conway's Game of Life",
     url: "https://github.com/briansmiley/CursedLife",
     github: "https://github.com/briansmiley/CursedLife"
   },
