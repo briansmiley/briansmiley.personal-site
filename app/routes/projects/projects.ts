@@ -87,7 +87,7 @@ export const offlineProjects: Project[] = [
     thumbnail: "thumbnails/menger4.jpeg",
     blurb:
       "Menger sponges and related fractals drawn using Solidworks and OpenSCAD",
-    url: "https://github.com/briansmiley/FractalModels",
-    github: "https://github.com/briansmiley/FractalModels"
+    url: "https://github.com/briansmiley/Fractal-Models",
+    github: "https://github.com/briansmiley/Fractal-Models"
   }
 ];

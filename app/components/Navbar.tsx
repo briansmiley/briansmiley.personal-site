@@ -26,7 +26,7 @@ function NavBarLink({
   return (
     <li
       key={key}
-      className="flex items-center text-base md:text-lg lg:text-xl hover:bg-blue-500  w-fit h-full px-2 py-1 md:px-4 transition-all duration-300"
+      className="flex text-darkblue items-center text-base md:text-lg lg:text-xl hover:bg-slate-300  w-fit h-full px-2 py-1 md:px-4 transition-all duration-300"
     >
       {internal ? (
         <Link to={url}>{label}</Link>
@@ -77,9 +77,9 @@ const IconLinks = [
 ];
 export default function Navbar() {
   return (
-    <header className="h-12 bg-indigo-500 ">
+    <header className="h-12 border-b-2 border-clay ">
       <nav className="h-full flex justify-between px-2 ">
-        <ul className="font-semibold text-blue-200 underline flex items-center justify-between overflow-x-auto h-full">
+        <ul className="font-semibold underline flex items-center justify-between overflow-x-auto h-full">
           {links.map((link, idx) => (
             <NavBarLink key={String(idx)} {...link} />
           ))}
@@ -88,7 +88,7 @@ export default function Navbar() {
           {IconLinks.map((link, idx) => (
             <a
               key={String(idx)}
-              className="text-blue-200 hover:text-blue-300"
+              className="text-midblue hover:text-darkblue"
               href={link.url}
               rel="noopener noreferrer"
               target="_blank"

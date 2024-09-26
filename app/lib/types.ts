@@ -3,4 +3,5 @@ export type Project = {
   thumbnail: string;
   blurb: string;
   url: string;
+  github: string;
 };

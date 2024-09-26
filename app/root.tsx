@@ -15,10 +15,7 @@ export const links: LinksFunction = () => [
 ];
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className="w-full h-full bg-gradient-to-br from-teal-800 to-blue-900"
-    >
+    <html lang="en" className="w-full h-screen bg-lightgray">
       <head>
         <meta charSet="utf-8" />
         <meta
@@ -28,7 +25,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="w-full h-full fixed">
+      <body>
         <Navbar />
         {children}
         <ScrollRestoration />

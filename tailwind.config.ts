@@ -21,6 +21,14 @@ const config = {
       }
     },
     extend: {
+      colors: {
+        // https://coolors.co/palette/e7ecef-274c77-6096ba-a3cef1-8b8c89
+        lightgray: "#e7ecef",
+        darkblue: "#274c77",
+        midblue: "#6096ba",
+        lightblue: "#a3cef1",
+        clay: "#8b8c89"
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
