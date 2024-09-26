@@ -35,7 +35,7 @@ export const p5Projects: Project[] = [
   {
     title: "Pong",
     thumbnail: "thumbnails/pong.png",
-    blurb: "A classic Pong game",
+    blurb: "Pong made in p5.js",
     url: "https://briansmiley.github.io/p5/pong",
     github:
       "https://github.com/briansmiley/briansmiley.github.io/tree/main/p5/pong"
