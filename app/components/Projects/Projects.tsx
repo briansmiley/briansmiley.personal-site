@@ -1,5 +1,5 @@
 import ProjectList from "./ProjectList";
-import { offlineProjects, p5Projects, reactProjects } from "./projects";
+import { offlineProjects, p5Projects, reactProjects } from "./projectsData";
 
 export default function Projects() {
   const projects = [...reactProjects, ...p5Projects];

@@ -1,6 +1,6 @@
-import { Project } from "~/lib/types";
+import { ProjectType } from "~/lib/types";
 
-export const p5Projects: Project[] = [
+export const p5Projects: ProjectType[] = [
   {
     title: "Ricochet Robots",
     thumbnail: "thumbnails/robots.png",
@@ -49,7 +49,7 @@ export const p5Projects: Project[] = [
   }
 ];
 
-export const reactProjects: Project[] = [
+export const reactProjects: ProjectType[] = [
   {
     title: "Tetris",
     thumbnail: "thumbnails/tetris.png",
@@ -74,7 +74,7 @@ export const reactProjects: Project[] = [
   }
 ];
 
-export const offlineProjects: Project[] = [
+export const offlineProjects: ProjectType[] = [
   {
     title: "Terminal Life",
     thumbnail: "thumbnails/curses.png",

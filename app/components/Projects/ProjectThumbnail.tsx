@@ -1,10 +1,10 @@
 import { Link } from "@remix-run/react";
-import { Project } from "~/lib/types";
+import { ProjectType } from "~/lib/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 type ProjectThumbnailProps = {
-  project: Project;
+  project: ProjectType;
   basis: number;
 };
 export default function ProjectThumbnail({
@@ -14,7 +14,7 @@ export default function ProjectThumbnail({
   return (
     <Link
       to={project.url}
-      className="basis-1/4 p-1"
+      className="p-1"
       style={{ flexBasis: `calc(100% / ${basis})` }}
       rel="noopener noreferrer"
       target="_blank"
