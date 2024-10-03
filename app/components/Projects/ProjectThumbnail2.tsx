@@ -15,16 +15,20 @@ export default function ProjectThumbnail2({
     <div className="p-2" style={{ flexBasis: `calc(100% / ${basis})` }}>
       <Link
         to={project.url}
-        className="p-1 flex flex-row gap-2 grow-0 border-darkblue border-2 rounded-md"
+        className="p-1 grid grid-cols-2 gap-2 border-darkblue border-2 rounded-md"
         rel="noopener noreferrer"
         target="_blank"
       >
-        <img
-          className=" w-[50%] aspect-square border-2 border-darkblue  "
-          src={project.thumbnail}
-          alt={project.title}
-        />
-        <div className="basis-1/2 flex flex-col gap-3">
+        <div className="flex items-center justify-center">
+          <div className="relative aspect-square w-full max-w-full">
+            <img
+              className="absolute inset-0 w-full h-full object-cover border-2 border-darkblue"
+              src={project.thumbnail}
+              alt={project.title}
+            />
+          </div>
+        </div>
+        <div className="flex flex-col gap-3">
           <div className="flex flex-row justify-between">
             <p className="underline text-lg lg:text-xl font-semibold">
               {project.title}
@@ -38,7 +42,9 @@ export default function ProjectThumbnail2({
               <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
             </a>
           </div>
-          <p className="text-sm">{project.blurb}</p>
+          <p className="text-sm line-clamp-3 md:line-clamp-none grow-0">
+            {project.blurb}
+          </p>
         </div>
       </Link>
     </div>
