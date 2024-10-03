@@ -2,6 +2,7 @@ import { Link } from "@remix-run/react";
 import { ProjectType } from "~/lib/types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import FrameworkIcon from "../FrameworkIcon/FrameworkIcon";
 
 type ProjectThumbnail2Props = {
   project: ProjectType;
@@ -28,23 +29,32 @@ export default function ProjectThumbnail2({
             />
           </div>
         </div>
-        <div className="flex flex-col gap-3">
-          <div className="flex flex-row justify-between">
-            <p className="underline text-lg lg:text-xl font-semibold">
-              {project.title}
+        <div className="flex flex-col justify-between">
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-row justify-between">
+              <p className="underline text-lg lg:text-xl font-semibold">
+                {project.title}
+              </p>
+              <a
+                className="text-slate-700 hover:text-slate-900"
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
+              </a>
+            </div>
+            <p className="text-sm line-clamp-3 md:line-clamp-none grow-0">
+              {project.blurb}
             </p>
-            <a
-              className="text-slate-700 hover:text-slate-900"
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
-            </a>
           </div>
-          <p className="text-sm line-clamp-3 md:line-clamp-none grow-0">
-            {project.blurb}
-          </p>
+          {project.icons && (
+            <div className="flex flex-row">
+              {project.icons.map(icon => (
+                <FrameworkIcon icon={icon} key={icon} />
+              ))}
+            </div>
+          )}
         </div>
       </Link>
     </div>

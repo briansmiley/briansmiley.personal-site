@@ -8,10 +8,8 @@ export const meta: MetaFunction = () => {
 
 export default function Index() {
   return (
-    <div className="flex flex-col items-center">
-      <div className="border-b-2 border-darkblue border-opacity-20 pb-5 w-[50%]">
-        <BioHeader />
-      </div>
+    <div className="flex flex-col items-center py-5">
+      <BioHeader />
       <Projects />
     </div>
   );

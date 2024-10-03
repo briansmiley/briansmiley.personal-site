@@ -6,6 +6,7 @@ export type ProjectType = {
   blurb: string;
   url: string;
   github: string;
+  icons?: string[];
 };
 
 export type IconLinkType = {

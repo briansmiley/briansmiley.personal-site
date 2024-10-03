@@ -6,7 +6,8 @@ export const p5Projects: ProjectType[] = [
     thumbnail: "thumbnails/robots.png",
     blurb: "A multiplayer implementation of the boardgame Ricochet Robots",
     url: "https://briansmiley.github.io/p5/ricochetrobots",
-    github: "https://github.com/briansmiley/RicochetRobots"
+    github: "https://github.com/briansmiley/RicochetRobots",
+    icons: ["p5", "javascript"]
   },
   {
     title: "Binary Tree",
@@ -55,7 +56,8 @@ export const reactProjects: ProjectType[] = [
     thumbnail: "thumbnails/tetris.png",
     blurb: "Tetris clone with logic built in TypeScript, and UI built in React",
     url: "https://tetris.binarysmile.com",
-    github: "https://github.com/briansmiley/briansmiley.Tetris"
+    github: "https://github.com/briansmiley/briansmiley.Tetris",
+    icons: ["react", "typescript", "prisma"]
   },
   {
     title: "ArtGen Feed",
