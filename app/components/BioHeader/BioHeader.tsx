@@ -7,14 +7,14 @@ import IconLink from "./IconLink";
 import { IconLinkType } from "../../lib/types";
 const IconLinks: IconLinkType[] = [
   {
-    label: "X",
-    icon: faXTwitter,
-    url: "https://www.x.com/binarysmile"
-  },
-  {
     label: "GitHub",
     icon: faGithub,
     url: "https://github.com/briansmiley"
+  },
+  {
+    label: "X",
+    icon: faXTwitter,
+    url: "https://www.x.com/binarysmile"
   },
   {
     label: "LinkedIn",

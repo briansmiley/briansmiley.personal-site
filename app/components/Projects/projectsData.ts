@@ -66,7 +66,7 @@ export const reactProjects: ProjectType[] = [
     github: "https://github.com/briansmiley/ArtGen"
   },
   {
-    title: "WeMadeABudget",
+    title: "We Made A Budget",
     thumbnail: "thumbnails/wmab.png",
     blurb: "A budgeting app, clone of YNAB, built in NextJS",
     url: "https://wmab.app",
