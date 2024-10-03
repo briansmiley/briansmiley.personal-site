@@ -62,7 +62,7 @@ export const reactProjects: ProjectType[] = [
     blurb: "Tetris clone with logic built in TypeScript, and UI built in React",
     url: "https://tetris.binarysmile.com",
     github: "https://github.com/briansmiley/briansmiley.Tetris",
-    icons: ["react", "typescript", "prisma"]
+    icons: ["React", "TypeScript", "Prisma"]
   },
   {
     title: "ArtGen Feed",
@@ -71,7 +71,7 @@ export const reactProjects: ProjectType[] = [
       "Feed of parametric binary tree submitted by users made with React Konva canvas",
     url: "https://artgen.binarysmile.com",
     github: "https://github.com/briansmiley/ArtGen",
-    icons: ["next", "react", "typescript", "prisma", "clerk"]
+    icons: ["NextJS", "React", "TypeScript", "Prisma", "Clerk"]
   },
   {
     title: "We Made A Budget",
@@ -79,7 +79,7 @@ export const reactProjects: ProjectType[] = [
     blurb: "A budgeting app, clone of YNAB, built in NextJS",
     url: "https://wmab.app",
     github: "https://github.com/briansmiley/wemadeabudget",
-    icons: ["next", "react", "typescript", "prisma", "clerk"]
+    icons: ["NextJS", "React", "TypeScript", "Prisma", "Clerk"]
   }
 ];
 
@@ -90,7 +90,7 @@ export const offlineProjects: ProjectType[] = [
     blurb: "Python terminal script for an ASCII based Conway's Game of Life",
     url: "https://github.com/briansmiley/CursedLife",
     github: "https://github.com/briansmiley/CursedLife",
-    icons: ["python"]
+    icons: ["Python"]
   },
   {
     title: "Fractal Models",
@@ -99,6 +99,6 @@ export const offlineProjects: ProjectType[] = [
       "Menger sponges and related fractals drawn using Solidworks and OpenSCAD",
     url: "https://github.com/briansmiley/Fractal-Models",
     github: "https://github.com/briansmiley/Fractal-Models",
-    icons: ["openscad", "solidworks"]
+    icons: ["OpenSCAD", "Solidworks"]
   }
 ];
