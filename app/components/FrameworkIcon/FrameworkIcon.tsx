@@ -7,11 +7,14 @@ export default function FrameworkIcon({
   icon,
   className = ""
 }: FrameworkIconProps) {
+  const fileName = icon.toLowerCase();
   return (
     <img
-      src={`/icons/${icon}.svg`}
+      src={`/icons/${fileName}.svg`}
       alt={icon}
-      className={`w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 ${className}`}
+      title={icon}
+      className={`aspect-square h-5 sm:h-6 md:h-7 lg:h-8 ${className}`}
+      style={{ objectFit: "contain" }}
     />
   );
 }
