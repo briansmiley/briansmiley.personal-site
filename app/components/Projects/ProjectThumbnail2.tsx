@@ -54,7 +54,7 @@ export default function ProjectThumbnail2({
             </p>
           </div>
           {project.icons && (
-            <div className="flex flex-row">
+            <div className="flex flex-row overflow-hidden">
               {project.icons.map(icon => (
                 <FrameworkIcon
                   icon={icon}
