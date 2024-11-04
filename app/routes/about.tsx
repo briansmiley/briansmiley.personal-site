@@ -1,13 +1,18 @@
-export default function About() {
+import { Link } from "@remix-run/react";
+import { CopyIcon, MailIcon } from "lucide-react";
+
+export default function Info() {
   return (
-    <div className="mx-5">
-      <h1 className="font-semibold text-4xl">About</h1>
-      <p>Hi I&apos;m Brian</p>
-      <img
-        src="/brian.jpg"
-        className="object-scale-down w-[500px]"
-        alt="Brian"
-      />
+    <div className="flex flex-col items-center justify-center">
+      <Link to="/resume.pdf" target="_blank" rel="noopener noreferrer">
+        Resumé
+      </Link>
+      <MailIcon className="w-4 h-4" /> briansmiley@proton.me{" "}
+      <button
+        onClick={() => navigator.clipboard.writeText("briansmiley@proton.me")}
+      >
+        <CopyIcon className="w-4 h-4" />
+      </button>
     </div>
   );
 }
