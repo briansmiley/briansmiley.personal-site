@@ -65,6 +65,15 @@ export const reactProjects: ProjectType[] = [
     icons: ["React", "TypeScript", "Prisma"]
   },
   {
+    title: "Thirst Trap",
+    thumbnail: "thumbnails/thirst_trap.png",
+    blurb:
+      "Player management app for an immersive theater party with cross-client websocket synchronization.",
+    url: "https://thirsttrap.live",
+    github: "https://github.com/briansmiley/thirst-trap",
+    icons: ["NextJS", "React", "TypeScript", "Prisma", "SocketIO"]
+  },
+  {
     title: "ArtGen Feed",
     thumbnail: "thumbnails/artgen.png",
     blurb:
