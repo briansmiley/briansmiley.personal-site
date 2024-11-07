@@ -13,24 +13,27 @@ export default function ProjectThumbnail2({
   basis
 }: ProjectThumbnail2Props) {
   return (
-    <div className="p-2" style={{ flexBasis: `calc(100% / ${basis})` }}>
-      <div className="p-1 grid grid-cols-2 gap-2 border-darkblue border-2 rounded-md">
+    <div
+      className="p-2 h-[250px]"
+      style={{ flexBasis: `calc(100% / ${basis})` }}
+    >
+      <div className="p-1 h-full grid grid-cols-2 gap-2 border-darkblue border-2 rounded-md">
         <div className="flex items-center justify-center">
           <Link
             to={project.url}
-            className="relative aspect-square w-full max-w-full"
+            className="relative h-full aspect-square overflow-hidden"
             rel="noopener noreferrer"
             target="_blank"
           >
             <img
-              className="absolute inset-0 w-full h-full object-cover border-2 border-darkblue"
+              className="absolute inset-0 h-full object-cover border-2 border-darkblue"
               src={project.thumbnail}
               alt={project.title}
             />
           </Link>
         </div>
         <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-1">
             <div className="flex flex-row justify-between">
               <Link
                 to={project.url}
@@ -49,9 +52,7 @@ export default function ProjectThumbnail2({
                 <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
               </a>
             </div>
-            <p className="text-sm line-clamp-3 md:line-clamp-none grow-0">
-              {project.blurb}
-            </p>
+            <p className="text-sm ">{project.blurb}</p>
           </div>
           {project.icons && (
             <div className="flex flex-row overflow-hidden">
