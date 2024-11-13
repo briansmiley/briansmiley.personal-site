@@ -30,7 +30,7 @@ export const p5Projects: ProjectType[] = [
   {
     title: "Voronoi",
     thumbnail: "thumbnails/voronoi.png",
-    blurb: "Voronoi diagram animation",
+    blurb: "Voronoi diagram p5.js animation",
     url: "https://briansmiley.github.io/p5/voronoi",
     github:
       "https://github.com/briansmiley/briansmiley.github.io/tree/main/p5/voronoi",
@@ -48,7 +48,7 @@ export const p5Projects: ProjectType[] = [
   {
     title: "BitMapper",
     thumbnail: "thumbnails/bitmapper.png",
-    blurb: "Create pixel-wise characters to make your own pixel font",
+    blurb: "p5.js sketch for creating pixel-wise font characters",
     url: "https://briansmiley.github.io/p5/bitmapper",
     github: "https://github.com/briansmiley/BitMapper/",
     icons: ["p5"]
@@ -59,7 +59,7 @@ export const reactProjects: ProjectType[] = [
   {
     title: "Tetris",
     thumbnail: "thumbnails/tetris.png",
-    blurb: "Tetris clone with logic built in TypeScript, and UI built in React",
+    blurb: "Tetris clone with TypeScript game logic and React view layer",
     url: "https://tetris.binarysmile.com",
     github: "https://github.com/briansmiley/briansmiley.Tetris",
     icons: ["React", "TypeScript", "Prisma"]
@@ -109,5 +109,14 @@ export const offlineProjects: ProjectType[] = [
     url: "https://github.com/briansmiley/Fractal-Models",
     github: "https://github.com/briansmiley/Fractal-Models",
     icons: ["OpenSCAD", "Solidworks"]
+  },
+  {
+    title: "Nand2Tetris",
+    thumbnail: "thumbnails/nand2tetris.png",
+    blurb:
+      "Built a virtual computer, OS, and final project Game of Life app up from basic NAND logic gates.",
+    url: "https://github.com/briansmiley/Jack-Life",
+    github: "https://github.com/briansmiley/Jack-Life",
+    icons: []
   }
 ];
