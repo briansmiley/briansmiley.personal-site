@@ -117,6 +117,6 @@ export const offlineProjects: ProjectType[] = [
       "Built a virtual computer, OS, and final project Game of Life app up from basic NAND logic gates.",
     url: "https://github.com/briansmiley/Jack-Life",
     github: "https://github.com/briansmiley/Jack-Life",
-    icons: []
+    icons: ["nand2tetris"]
   }
 ];
