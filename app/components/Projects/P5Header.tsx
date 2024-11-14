@@ -1,21 +1,21 @@
 // Renders p5.js projects header with spinning logo
 export const P5Header = () => {
   return (
-    <h1 className="flex items-center font-bold text-2xl min-[300px]:text-2xl basis-1/6 transition-all duration-300">
+    <h1 className="flex basis-1/6 items-center text-2xl font-bold transition-all duration-300 min-[300px]:text-2xl">
       <div className="flex items-center">
         <a
           href="https://p5js.org/"
-          className=" text-red-600 underline flex items-center"
+          className="flex items-center text-red-600 underline"
         >
           <span>p5</span>
-          <P5Logo className="self-end h-3 w-3 " />
+          <P5Logo className="h-3 w-3 self-end" />
           <span>js </span>
         </a>
-        <span className="text-black ml-1">Sketches</span>
+        <span className="ml-1 text-black">Sketches</span>
       </div>
     </h1>
-  );
-};
+  )
+}
 const P5Logo = ({ className }: { className: string }) => {
   return (
     <svg
@@ -29,5 +29,5 @@ const P5Logo = ({ className }: { className: string }) => {
         fill="currentColor"
       ></path>
     </svg>
-  );
-};
+  )
+}

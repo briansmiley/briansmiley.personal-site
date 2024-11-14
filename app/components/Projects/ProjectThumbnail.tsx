@@ -1,15 +1,15 @@
-import { Link } from "@remix-run/react";
-import { ProjectType } from "~/lib/types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "@remix-run/react"
+import { ProjectType } from "~/lib/types"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 type ProjectThumbnailProps = {
-  project: ProjectType;
-  basis: number;
-};
+  project: ProjectType
+  basis: number
+}
 export default function ProjectThumbnail({
   project,
-  basis
+  basis,
 }: ProjectThumbnailProps) {
   return (
     <Link
@@ -19,10 +19,10 @@ export default function ProjectThumbnail({
       rel="noopener noreferrer"
       target="_blank"
     >
-      <div className="relative group aspect-square ">
-        <div className="absolute @container z-10 inset-0 w-full h-full bg-indigo-950 rounded-full bg-opacity-70 flex flex-col gap-3 items-center justify-center text-white text-center opacity-0  group-hover:opacity-100 invisible group-hover:visible transition-opacity duration-1000">
+      <div className="group relative aspect-square">
+        <div className="invisible absolute inset-0 z-10 flex h-full w-full flex-col items-center justify-center gap-3 rounded-full bg-indigo-950 bg-opacity-70 text-center text-white opacity-0 transition-opacity duration-1000 @container group-hover:visible group-hover:opacity-100">
           <div>
-            <p className="underline text-md @[150px]:text-lg font-semibold">
+            <p className="text-md font-semibold underline @[150px]:text-lg">
               {project.title}
             </p>
             <p className="text-xs @[150px]:text-sm">{project.blurb}</p>
@@ -33,15 +33,15 @@ export default function ProjectThumbnail({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <FontAwesomeIcon icon={faGithub} className="w-6 h-6" />
+            <FontAwesomeIcon icon={faGithub} className="h-6 w-6" />
           </a>
         </div>
         <img
-          className="border-2 border-darkblue group-hover:scale-90 group-hover:rounded-[999px] h-full w-full rounded-[0px] transition-all duration-1000"
+          className="h-full w-full rounded-[0px] border-2 border-darkblue transition-all duration-1000 group-hover:scale-90 group-hover:rounded-[999px]"
           src={project.thumbnail}
           alt={project.title}
         ></img>
       </div>
     </Link>
-  );
+  )
 }

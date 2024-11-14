@@ -1,9 +1,9 @@
-import { Moon, Sun } from "lucide-react";
-import { Theme, useTheme } from "remix-themes";
-import { Button } from "./ui/button";
+import { Moon, Sun } from "lucide-react"
+import { Theme, useTheme } from "remix-themes"
+import { Button } from "./ui/button"
 
 export function ThemeButton() {
-  const [theme, setTheme] = useTheme();
+  const [theme, setTheme] = useTheme()
 
   return (
     <Button
@@ -20,5 +20,5 @@ export function ThemeButton() {
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>
-  );
+  )
 }

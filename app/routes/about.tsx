@@ -1,5 +1,5 @@
-import { Link } from "@remix-run/react";
-import { CopyIcon, MailIcon } from "lucide-react";
+import { Link } from "@remix-run/react"
+import { CopyIcon, MailIcon } from "lucide-react"
 
 export default function Info() {
   return (
@@ -7,12 +7,12 @@ export default function Info() {
       <Link to="/resume.pdf" target="_blank" rel="noopener noreferrer">
         Resumé
       </Link>
-      <MailIcon className="w-4 h-4" /> briansmiley@proton.me{" "}
+      <MailIcon className="h-4 w-4" /> briansmiley@proton.me{" "}
       <button
         onClick={() => navigator.clipboard.writeText("briansmiley@proton.me")}
       >
-        <CopyIcon className="w-4 h-4" />
+        <CopyIcon className="h-4 w-4" />
       </button>
     </div>
-  );
+  )
 }

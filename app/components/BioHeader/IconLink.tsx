@@ -1,12 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconLinkType } from "~/lib/types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { IconLinkType } from "~/lib/types"
 
 type IconLinkProps = {
-  iconLink: IconLinkType;
-  size?: number;
-};
+  iconLink: IconLinkType
+  size?: number
+}
 export default function IconLink({ iconLink, size = 20 }: IconLinkProps) {
-  const { label, icon, url } = iconLink;
+  const { label, icon, url } = iconLink
   return (
     <a
       className="text-midblue hover:text-darkblue"
@@ -19,9 +19,9 @@ export default function IconLink({ iconLink, size = 20 }: IconLinkProps) {
         icon={icon}
         style={{
           height: size,
-          width: size
+          width: size,
         }}
       />
     </a>
-  );
+  )
 }

@@ -1,13 +1,13 @@
 type FrameworkIconProps = {
-  icon: string;
-  className?: string;
-};
+  icon: string
+  className?: string
+}
 
 export default function FrameworkIcon({
   icon,
-  className = ""
+  className = "",
 }: FrameworkIconProps) {
-  const fileName = icon.toLowerCase();
+  const fileName = icon.toLowerCase()
   return (
     <img
       src={`/icons/${fileName}.svg`}
@@ -16,5 +16,5 @@ export default function FrameworkIcon({
       className={`aspect-square h-5 sm:h-6 md:h-7 lg:h-8 ${className}`}
       style={{ objectFit: "contain" }}
     />
-  );
+  )
 }

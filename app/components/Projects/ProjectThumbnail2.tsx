@@ -1,32 +1,32 @@
-import { Link } from "@remix-run/react";
-import { ProjectType } from "~/lib/types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import FrameworkIcon from "../FrameworkIcon/FrameworkIcon";
+import { Link } from "@remix-run/react"
+import { ProjectType } from "~/lib/types"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import FrameworkIcon from "../FrameworkIcon/FrameworkIcon"
 
 type ProjectThumbnail2Props = {
-  project: ProjectType;
-  basis: number;
-};
+  project: ProjectType
+  basis: number
+}
 export default function ProjectThumbnail2({
   project,
-  basis
+  basis,
 }: ProjectThumbnail2Props) {
   return (
     <div
-      className="p-2 h-[250px]"
+      className="h-[250px] p-2"
       style={{ flexBasis: `calc(100% / ${basis})` }}
     >
-      <div className="p-1 h-full grid grid-cols-2 gap-2 border-darkblue border-2 rounded-md">
+      <div className="grid h-full grid-cols-2 gap-2 rounded-md border-2 border-darkblue p-1">
         <div className="flex items-center justify-center">
           <Link
             to={project.url}
-            className="relative h-full aspect-square overflow-hidden"
+            className="relative aspect-square h-full overflow-hidden"
             rel="noopener noreferrer"
             target="_blank"
           >
             <img
-              className="absolute inset-0 h-full object-cover border-2 border-darkblue"
+              className="absolute inset-0 h-full border-2 border-darkblue object-cover"
               src={project.thumbnail}
               alt={project.title}
             />
@@ -37,7 +37,7 @@ export default function ProjectThumbnail2({
             <div className="flex flex-row justify-between">
               <Link
                 to={project.url}
-                className="underline text-lg lg:text-xl font-semibold"
+                className="text-lg font-semibold underline lg:text-xl"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -49,14 +49,14 @@ export default function ProjectThumbnail2({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={faGithub} className="w-5 h-5" />
+                <FontAwesomeIcon icon={faGithub} className="h-5 w-5" />
               </a>
             </div>
-            <p className="text-sm ">{project.blurb}</p>
+            <p className="text-sm">{project.blurb}</p>
           </div>
           {project.icons && (
             <div className="flex flex-row overflow-hidden">
-              {project.icons.map(icon => (
+              {project.icons.map((icon) => (
                 <FrameworkIcon
                   icon={icon}
                   key={icon}
@@ -68,5 +68,5 @@ export default function ProjectThumbnail2({
         </div>
       </div>
     </div>
-  );
+  )
 }
