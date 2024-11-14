@@ -27,7 +27,7 @@ const IconLinks: IconLinkType[] = [
 ];
 export default function BioHeader() {
   return (
-    <div className="border-b-2 border-darkblue border-opacity-20 pb-5 w-[50%]">
+    <div className="border-b-2 border-darkblue dark:border-midblue border-opacity-20 pb-5 w-[50%]">
       <div className="flex flex-col items-center gap-2">
         <h1 className="text-2xl font-bold">Brian Smiley</h1>
         <div className="flex gap-3 items-start">

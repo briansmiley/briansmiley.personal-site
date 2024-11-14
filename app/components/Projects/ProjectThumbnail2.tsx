@@ -44,7 +44,7 @@ export default function ProjectThumbnail2({
                 {project.title}
               </Link>
               <a
-                className="text-slate-700 hover:text-slate-900"
+                className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
