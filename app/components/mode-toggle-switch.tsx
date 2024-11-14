@@ -14,8 +14,8 @@ export function ModeToggleSwitch() {
             setTheme(checked ? Theme.DARK : Theme.LIGHT)
           }
         />
-        <Sun className="h-4 w-4 absolute left-[6px] top-[8px] text-foreground opacity-100 dark:opacity-40 transition-opacity duration-300" />
-        <Moon className="h-4 w-4 absolute right-[6px] top-[8px] text-foreground opacity-40 dark:opacity-100 transition-opacity duration-300" />
+        <Sun className="pointer-events-none h-4 w-4 absolute left-[6px] top-[8px] text-foreground opacity-100 dark:opacity-40 transition-opacity duration-300" />
+        <Moon className="pointer-events-none h-4 w-4 absolute right-[6px] top-[8px] text-foreground opacity-40 dark:opacity-100 transition-opacity duration-300" />
       </div>
     </div>
   );
