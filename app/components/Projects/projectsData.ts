@@ -96,7 +96,7 @@ export const reactProjects: ProjectType[] = [
     blurb: "Micro-app for generating QR code ID tags",
     url: "https://qrgen.binarysmile.com",
     github: "https://github.com/briansmiley/QRgen",
-    icons: ["html", "css", "js"],
+    icons: ["html", "css", "javascript"],
   },
 ]
 
