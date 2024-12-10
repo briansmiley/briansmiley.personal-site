@@ -59,7 +59,8 @@ export const reactProjects: ProjectType[] = [
   {
     title: "Tetris",
     thumbnail: "thumbnails/tetris.png",
-    blurb: "Tetris clone with TypeScript game logic and React view layer",
+    blurb:
+      "Tetris clone with TypeScript game logic, React view layer, and local/global platform-specific leaderboards.",
     url: "https://tetris.binarysmile.com",
     github: "https://github.com/briansmiley/briansmiley.Tetris",
     icons: ["React", "TypeScript", "Prisma"],
@@ -90,14 +91,6 @@ export const reactProjects: ProjectType[] = [
     github: "https://github.com/briansmiley/wemadeabudget",
     icons: ["NextJS", "React", "TypeScript", "Prisma", "Clerk"],
   },
-  {
-    title: "QR ID Generator",
-    thumbnail: "thumbnails/qrGen.png",
-    blurb: "Micro-app for generating QR code ID tags",
-    url: "https://qrgen.binarysmile.com",
-    github: "https://github.com/briansmiley/QRgen",
-    icons: ["html", "css", "javascript"],
-  },
 ]
 
 export const offlineProjects: ProjectType[] = [
@@ -126,5 +119,16 @@ export const offlineProjects: ProjectType[] = [
     url: "https://github.com/briansmiley/Jack-Life",
     github: "https://github.com/briansmiley/Jack-Life",
     icons: ["nand2tetris"],
+  },
+]
+
+export const otherWebProjects: ProjectType[] = [
+  {
+    title: "QR ID Generator",
+    thumbnail: "thumbnails/qrGen.png",
+    blurb: "Micro-app for generating QR code ID tags",
+    url: "https://qrgen.binarysmile.com",
+    github: "https://github.com/briansmiley/QRgen",
+    icons: ["html", "css", "javascript"],
   },
 ]
