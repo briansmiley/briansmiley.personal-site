@@ -90,6 +90,14 @@ export const reactProjects: ProjectType[] = [
     github: "https://github.com/briansmiley/wemadeabudget",
     icons: ["NextJS", "React", "TypeScript", "Prisma", "Clerk"],
   },
+  {
+    title: "QR ID Generator",
+    thumbnail: "thumbnails/qrGen.png",
+    blurb: "Micro-app for generating QR code ID tags",
+    url: "https://qrgen.binarysmile.com",
+    github: "https://github.com/briansmiley/QRgen",
+    icons: ["html", "css", "js"],
+  },
 ]
 
 export const offlineProjects: ProjectType[] = [
