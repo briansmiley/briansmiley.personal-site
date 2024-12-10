@@ -1,8 +1,13 @@
 import ProjectList from "./ProjectList"
-import { offlineProjects, p5Projects, reactProjects } from "./projectsData"
+import {
+  offlineProjects,
+  otherWebProjects,
+  p5Projects,
+  reactProjects,
+} from "./projectsData"
 
 export default function Projects() {
-  const projects = [...reactProjects, ...p5Projects]
+  const projects = [...reactProjects, ...otherWebProjects, ...p5Projects]
   const offProjects = [...offlineProjects]
   return (
     <div className="flex h-full w-full flex-col items-center overflow-y-auto py-5">
