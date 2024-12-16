@@ -12,12 +12,10 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div className="flex flex-col items-center py-5">
-      <div className="absolute right-5 top-5">
-        {/* <ModeToggle /> */}
+      {/* <div className="absolute right-5 top-5">
         <ModeToggleSwitch />
-        {/* <ThemeButton /> */}
       </div>
-      <BioHeader />
+      <BioHeader /> */}
       <Projects />
     </div>
   )

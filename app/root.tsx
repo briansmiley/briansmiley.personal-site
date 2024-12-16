@@ -13,6 +13,8 @@ import { themeSessionResolver } from "./sessions.server"
 
 import stylesheet from "~/tailwind.css?url"
 import { Toaster } from "./components/ui/toaster"
+import BioHeader from "./components/BioHeader/BioHeader"
+import { ModeToggleSwitch } from "./components/mode-toggle-switch"
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
 ]
@@ -49,6 +51,12 @@ export function App() {
         <Links />
       </head>
       <body className="bg-lightgray text-darkgray dark:bg-darkgray dark:text-lightgray">
+        <div className="flex flex-col items-center py-5">
+          <div className="absolute right-5 top-5">
+            <ModeToggleSwitch />
+          </div>
+          <BioHeader />
+        </div>
         <Outlet />
         <ScrollRestoration />
         <Toaster />

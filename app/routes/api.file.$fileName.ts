@@ -63,14 +63,32 @@ function getContentType(fileName: string) {
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   try {
-    if (DEBUG) console.log("\n=== New Request ===")
+    if (DEBUG) {
+      console.log("\n=== New Request ===")
+      console.log("Environment variables:", {
+        hasKeyId: !!B2_APPLICATION_KEY_ID,
+        keyIdPrefix: B2_APPLICATION_KEY_ID?.slice(0, 4),
+        hasKey: !!B2_APPLICATION_KEY,
+        keyPrefix: B2_APPLICATION_KEY?.slice(0, 4),
+        bucketName: B2_BUCKET_NAME,
+      })
+    }
+
     const { fileName } = LoaderParams.parse(params)
 
-    // Get B2 credentials
+    // Get B2 credentials with more logging
     const credentials = await getB2Credentials()
     const fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}`
 
-    // Forward the request to B2, including any range headers
+    if (DEBUG) {
+      console.log("Request details:", {
+        fileUrl,
+        fileName,
+        headers: Object.fromEntries(request.headers),
+      })
+    }
+
+    // Forward the request to B2
     const response = await fetch(fileUrl, {
       headers: {
         ...Object.fromEntries(request.headers),
@@ -79,12 +97,19 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     })
 
     if (!response.ok) {
+      const errorBody = await response.text() // Get the error message
+      console.error("B2 Error:", {
+        status: response.status,
+        statusText: response.statusText,
+        headers: Object.fromEntries(response.headers),
+        url: fileUrl,
+        errorBody, // Log the actual error message
+      })
       throw new Error(
-        `B2 responded with ${response.status}: ${response.statusText}`
+        `B2 responded with ${response.status}: ${response.statusText} - ${errorBody}`
       )
     }
 
-    // Forward B2's response directly
     return new Response(response.body, {
       status: response.status,
       headers: response.headers,
