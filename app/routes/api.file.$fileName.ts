@@ -17,7 +17,7 @@ const B2ApiResponse = z.object({
 })
 
 async function getB2Credentials() {
-  console.log("Attempting B2 auth...")
+  //   console.log("Attempting B2 auth...")
   const authString = Buffer.from(
     `${B2_APPLICATION_KEY_ID}:${B2_APPLICATION_KEY}`
   ).toString("base64")
@@ -37,7 +37,13 @@ async function getB2Credentials() {
   }
 
   const data = await response.json()
-  console.log("Got B2 response:", JSON.stringify(data, null, 2))
+
+  //   console.log("Got B2 response:", {
+  //     accountId: data.accountId,
+  //     capabilities: data.apiInfo?.storageApi?.capabilities,
+  //     bucketName: data.apiInfo?.storageApi?.bucketName,
+  //     downloadUrl: data.apiInfo?.storageApi?.downloadUrl,
+  //   })
 
   return B2ApiResponse.parse(data)
 }
@@ -61,40 +67,62 @@ function getContentType(fileName: string) {
   }
 }
 
+function formatSize(bytes: string | null): string {
+  if (!bytes) return "unknown size"
+  const mebibytes = Math.round(parseInt(bytes) / (1024 * 1024))
+  return `${mebibytes} MiB`
+}
+
+function parseRange(range: string | null) {
+  if (!range) return null
+  const [start, end] = range.replace("bytes=", "").split("-").map(Number)
+  const chunkSize = end ? end - start + 1 : null
+  return { start, end, chunkSize }
+}
+
 export async function loader({ request, params }: LoaderFunctionArgs) {
   try {
-    if (DEBUG) {
-      console.log("\n=== New Request ===")
-      console.log("Environment variables:", {
-        hasKeyId: !!B2_APPLICATION_KEY_ID,
-        keyIdPrefix: B2_APPLICATION_KEY_ID?.slice(0, 4),
-        hasKey: !!B2_APPLICATION_KEY,
-        keyPrefix: B2_APPLICATION_KEY?.slice(0, 4),
-        bucketName: B2_BUCKET_NAME,
-      })
-    }
+    const userAgent = request.headers.get("user-agent") || "unknown"
+    const range = request.headers.get("range")
+    const rangeDetails = parseRange(range)
+    const isStreamingRequest = !!range
+
+    console.log("\n=== File Request ===", {
+      timestamp: new Date().toISOString(),
+      file: params.fileName,
+      userAgent: userAgent.slice(0, 50),
+      isStreaming: isStreamingRequest,
+      range: rangeDetails
+        ? `${rangeDetails.start}-${rangeDetails.end}`
+        : "full file",
+      ip: request.headers.get("x-forwarded-for") || "unknown",
+    })
 
     const { fileName } = LoaderParams.parse(params)
-
-    // Get B2 credentials with more logging
     const credentials = await getB2Credentials()
     const fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}`
 
-    if (DEBUG) {
-      console.log("Request details:", {
-        fileUrl,
-        fileName,
-        headers: Object.fromEntries(request.headers),
-      })
-    }
-
-    // Forward the request to B2
     const response = await fetch(fileUrl, {
       headers: {
         ...Object.fromEntries(request.headers),
         Authorization: credentials.authorizationToken,
       },
     })
+
+    if (response.ok) {
+      console.log("Transfer started from B2:", {
+        file: fileName,
+        totalSize: formatSize(response.headers.get("content-length")),
+        chunkSize: rangeDetails
+          ? formatSize(String(rangeDetails.chunkSize))
+          : "N/A",
+        type: isStreamingRequest ? "streaming" : "full download",
+        range: rangeDetails
+          ? `${rangeDetails.start}-${rangeDetails.end}`
+          : "full file",
+        userAgent: userAgent.slice(0, 50),
+      })
+    }
 
     if (!response.ok) {
       const errorBody = await response.text() // Get the error message

@@ -8,6 +8,10 @@ export default function SpotifyIFrame({
   return (
     <iframe
       src={`https://open.spotify.com/embed/playlist/${spotifyPlaylistId}`}
+      style={{
+        borderRadius: "12px",
+        backgroundColor: "transparent",
+      }}
       width="100%"
       height={height}
       allowFullScreen

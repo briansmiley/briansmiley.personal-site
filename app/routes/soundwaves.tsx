@@ -67,7 +67,7 @@ export default function AudioTestPage() {
         <h2 className="text-lg font-bold">Playlists</h2>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {playlists.map((playlist) => (
-            <div className="w-full max-w-2xl">
+            <div className="w-full max-w-2xl" key={playlist.spotifyPlaylistId}>
               <SpotifyIFrame
                 spotifyPlaylistId={playlist.spotifyPlaylistId}
                 height="80"

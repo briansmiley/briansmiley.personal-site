@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react"
-import { Play, Pause, Download, Music } from "lucide-react"
+import { Play, Pause, Download } from "lucide-react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpotify } from "@fortawesome/free-brands-svg-icons"
 import SpotifyIFrame from "./SpotifyIFrame"
+import { useMediaQuery } from "usehooks-ts"
 
 interface AudioPlayerProps {
   fileName: string
@@ -27,12 +28,20 @@ export default function AudioPlayer({
   const [isSeeking, setIsSeeking] = useState(false)
   const [showSpotify, setShowSpotify] = useState(false)
   const [hasError, setHasError] = useState(false)
+  const [preload, setPreload] = useState<"none" | "metadata">("none")
+  const [isLoadingMetadata, setIsLoadingMetadata] = useState(false)
+
+  const isMobile = useMediaQuery("(max-width: 768px)")
+
+  useEffect(() => {
+    setPreload(isMobile ? "none" : "metadata")
+  }, [isMobile])
 
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
 
-    console.log("Audio source:", audio.src)
+    // console.log("Audio source:", audio.src)
 
     const updateTime = () => {
       if (!isSeeking) {
@@ -57,14 +66,49 @@ export default function AudioPlayer({
     }
   }, [isSeeking])
 
-  const togglePlay = () => {
+  const fetchMetadata = async () => {
+    setIsLoadingMetadata(true)
+    try {
+      const response = await fetch(
+        `/api/file/${encodeURIComponent(fileName)}`,
+        {
+          method: "HEAD",
+        }
+      )
+      const contentLength = response.headers.get("content-length")
+      if (contentLength) {
+        // Convert bytes to seconds (assuming 128kbps MP3)
+        const durationInSeconds = Math.floor(
+          parseInt(contentLength) / (128 * 128)
+        )
+        setDuration(durationInSeconds)
+      }
+    } catch (error) {
+      console.error("Error fetching metadata:", error)
+    }
+    setIsLoadingMetadata(false)
+  }
+
+  useEffect(() => {
+    if (isMobile && duration === 0) {
+      fetchMetadata()
+    }
+  }, [isMobile, fileName])
+
+  const togglePlay = async () => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.pause()
+        setIsPlaying(false)
       } else {
-        audioRef.current.play()
+        // On mobile, ensure metadata is loaded before playing
+        if (isMobile && duration === 0) {
+          audioRef.current.preload = "metadata"
+          await audioRef.current.load()
+        }
+        await audioRef.current.play()
+        setIsPlaying(true)
       }
-      setIsPlaying(!isPlaying)
     }
   }
 
@@ -81,12 +125,19 @@ export default function AudioPlayer({
   const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = Number(e.target.value)
     setSeekTime(time)
+    setCurrentTime(time)
   }
 
-  const handleSeekEnd = () => {
+  const handleSeekEnd = (
+    e: React.ChangeEvent<HTMLInputElement> | React.MouseEvent | React.TouchEvent
+  ) => {
     if (audioRef.current) {
-      audioRef.current.currentTime = seekTime
-      setCurrentTime(seekTime)
+      const time =
+        e instanceof MouseEvent || e instanceof TouchEvent
+          ? seekTime
+          : Number((e.target as HTMLInputElement).value)
+      audioRef.current.currentTime = time
+      setCurrentTime(time)
     }
     setIsSeeking(false)
   }
@@ -157,7 +208,7 @@ export default function AudioPlayer({
             <audio
               ref={audioRef}
               src={`/api/file/${encodeURIComponent(fileName)}`}
-              preload="metadata"
+              preload={preload}
             />
 
             <div className="flex items-center gap-4">
@@ -167,8 +218,8 @@ export default function AudioPlayer({
                   min={0}
                   max={duration}
                   value={isSeeking ? seekTime : currentTime}
-                  onMouseDown={handleSeekStart}
                   onChange={handleSeekChange}
+                  onMouseDown={handleSeekStart}
                   onMouseUp={handleSeekEnd}
                   onTouchStart={handleSeekStart}
                   onTouchEnd={handleSeekEnd}
