@@ -29,7 +29,6 @@ export default function AudioPlayer({
   const [showSpotify, setShowSpotify] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [preload, setPreload] = useState<"none" | "metadata">("none")
-  const [isLoadingMetadata, setIsLoadingMetadata] = useState(false)
 
   const isMobile = useMediaQuery("(max-width: 768px)")
 
@@ -65,35 +64,6 @@ export default function AudioPlayer({
       audio.removeEventListener("error", handleError)
     }
   }, [isSeeking])
-
-  const fetchMetadata = async () => {
-    setIsLoadingMetadata(true)
-    try {
-      const response = await fetch(
-        `/api/file/${encodeURIComponent(fileName)}`,
-        {
-          method: "HEAD",
-        }
-      )
-      const contentLength = response.headers.get("content-length")
-      if (contentLength) {
-        // Convert bytes to seconds (assuming 128kbps MP3)
-        const durationInSeconds = Math.floor(
-          parseInt(contentLength) / (128 * 128)
-        )
-        setDuration(durationInSeconds)
-      }
-    } catch (error) {
-      console.error("Error fetching metadata:", error)
-    }
-    setIsLoadingMetadata(false)
-  }
-
-  useEffect(() => {
-    if (isMobile && duration === 0) {
-      fetchMetadata()
-    }
-  }, [isMobile, fileName])
 
   const togglePlay = async () => {
     if (audioRef.current) {
