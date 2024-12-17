@@ -70,7 +70,7 @@ export default function AudioTestPage() {
             <div className="w-full max-w-2xl" key={playlist.spotifyPlaylistId}>
               <SpotifyIFrame
                 spotifyPlaylistId={playlist.spotifyPlaylistId}
-                height="80"
+                height="400"
               />
             </div>
           ))}
