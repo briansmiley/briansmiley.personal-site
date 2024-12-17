@@ -29,6 +29,7 @@ export default function AudioPlayer({
   const [showSpotify, setShowSpotify] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [preload, setPreload] = useState<"none" | "metadata">("none")
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
 
   const isMobile = useMediaQuery("(max-width: 768px)")
 
@@ -143,14 +144,31 @@ export default function AudioPlayer({
         )}
         <div className="flex items-center gap-4">
           {imageUrl && (
-            <img
-              src={imageUrl}
-              alt={title}
-              width={100}
-              height={100}
-              className="h-[100px] w-[100px] rounded-lg object-cover"
-              style={{ opacity: 1 }}
-            />
+            <>
+              <img
+                src={imageUrl}
+                alt={title}
+                width={100}
+                height={100}
+                className="h-[100px] w-[100px] cursor-pointer rounded-lg object-cover transition-opacity hover:opacity-90"
+                onClick={() => setIsImageModalOpen(true)}
+                style={{ opacity: 1 }}
+              />
+              {isImageModalOpen && (
+                <div
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-slate-700 bg-opacity-75"
+                  onClick={() => setIsImageModalOpen(false)}
+                >
+                  <div className="relative">
+                    <img
+                      src={imageUrl}
+                      alt={title}
+                      className="max-h-[80vh] max-w-[600px] rounded-lg object-contain"
+                    />
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
           <div className="flex-1">
