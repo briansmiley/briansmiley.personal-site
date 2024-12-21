@@ -75,6 +75,14 @@ export const reactProjects: ProjectType[] = [
     icons: ["NextJS", "React", "TypeScript", "Prisma", "SocketIO"],
   },
   {
+    title: "Set",
+    thumbnail: "thumbnails/set.png",
+    blurb: "Set card game in TypeScript",
+    url: "https://set.binarysmile.com",
+    github: "https://github.com/briansmiley/set",
+    icons: ["React", "TypeScript"],
+  },
+  {
     title: "ArtGen Feed",
     thumbnail: "thumbnails/artgen.png",
     blurb:
