@@ -69,7 +69,7 @@ export const reactProjects: ProjectType[] = [
     title: "Thirst Trap",
     thumbnail: "thumbnails/thirst_trap.png",
     blurb:
-      "Player management app for an immersive theater game with cross-client websocket synchronization.",
+      "Player management app for an immersive theater game with 60+ players, using websocket for cross-client synchronization between multiple game masters.",
     url: "https://thirsttrap.live",
     github: "https://github.com/briansmiley/thirst-trap",
     icons: ["NextJS", "React", "TypeScript", "Prisma", "SocketIO"],
