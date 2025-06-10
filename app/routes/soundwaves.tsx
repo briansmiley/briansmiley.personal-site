@@ -41,6 +41,13 @@ export default function AudioTestPage() {
         <h2 className="text-lg font-bold">Mixes</h2>
         <div className="grid w-full grid-cols-1 gap-2">
           <AudioPlayer
+            imageUrl="/thumbnails/ssw/ssw-caesura.png"
+            fileName="ssw-caesura.mp3"
+            title="Caesura"
+            spotifyPlaylistId="3YMF5MzVzq7HacVF8ET3s4"
+            allowDownload
+          />
+          <AudioPlayer
             imageUrl="/thumbnails/ssw/ssw-babylon.jpg"
             fileName="ssw-babylon.mp3"
             title="Babylon"
