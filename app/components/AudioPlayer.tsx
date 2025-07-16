@@ -31,7 +31,7 @@ export default function AudioPlayer({
   const [preload, setPreload] = useState<"none" | "metadata">("none")
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
 
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isMobile = useMediaQuery("(max-width: 425px)")
 
   useEffect(() => {
     setPreload(isMobile ? "none" : "metadata")
@@ -40,7 +40,7 @@ export default function AudioPlayer({
   useEffect(() => {
     const audio = audioRef.current
     if (!audio) return
-
+  
     // console.log("Audio source:", audio.src)
 
     const updateTime = () => {
@@ -60,6 +60,7 @@ export default function AudioPlayer({
     audio.addEventListener("error", handleError)
 
     return () => {
+
       audio.removeEventListener("timeupdate", updateTime)
       audio.removeEventListener("loadedmetadata", updateDuration)
       audio.removeEventListener("error", handleError)
