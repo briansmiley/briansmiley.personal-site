@@ -45,7 +45,7 @@ async function getB2Credentials() {
   return B2ApiResponseSchema.parse(data)
 }
 
-async function getSignedUrl(fileName: string, expiresInSeconds: number) {
+async function getSignedUrl(fileName: string, expiresInSeconds: number, wantsDownload: boolean) {
   const credentials = await getB2Credentials()
   const fetchUrl = `${credentials.apiInfo.storageApi.apiUrl}/b2api/v4/b2_get_download_authorization`
   console.log("Fetching signed URL from:", fetchUrl)
@@ -61,6 +61,9 @@ async function getSignedUrl(fileName: string, expiresInSeconds: number) {
         bucketId: B2_BUCKET_ID,
         fileNamePrefix: fileName,
         validDurationInSeconds: expiresInSeconds,
+        ...(wantsDownload && {
+          b2ContentDisposition: `attachment; filename="${fileName}"`,
+        }),
       }),
     }
   )
@@ -79,7 +82,10 @@ const LoaderParams = z.object({
 export async function loader({ request, params }: LoaderFunctionArgs) {
   try {
     const { fileName } = LoaderParams.parse(params)
-    const signedUrlAuth = await getSignedUrl(fileName, 60 * 5) // 5 minutes
+    const url = new URL(request.url)
+    const wantsDownload = url.searchParams.get("download") === "true"
+
+    const signedUrlAuth = await getSignedUrl(fileName, 60 * 5, wantsDownload) // 5 minutes
     const range = request.headers.get("range")
     console.log("\n=== File Request ===\n", {
       timestamp: new Date().toISOString(),
@@ -88,7 +94,11 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     })
 
     const credentials = await getB2Credentials()
-    const fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}?Authorization=${signedUrlAuth.authorizationToken}`
+    let fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}?Authorization=${signedUrlAuth.authorizationToken}`
+    if (wantsDownload) {
+      const disposition = encodeURIComponent(`attachment; filename="${fileName}"`)
+      fileUrl += `&b2ContentDisposition=${disposition}`
+    }
     console.log("Redirecting to B2 signed URL:", fileUrl)
     return new Response(null, {
       status: 302,

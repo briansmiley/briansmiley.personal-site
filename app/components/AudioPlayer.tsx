@@ -121,7 +121,7 @@ export default function AudioPlayer({
       >
         {allowDownload && !hasError && (
           <a
-            href={`/api/file/${encodeURIComponent(fileName)}`}
+            href={`/api/file/${encodeURIComponent(fileName)}?download=true`}
             download={fileName}
             className="absolute right-1 top-1 flex h-fit w-fit"
             title="Download audio"
