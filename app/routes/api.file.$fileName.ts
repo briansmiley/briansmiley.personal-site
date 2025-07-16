@@ -4,9 +4,10 @@ import { z } from "zod"
 const B2_APPLICATION_KEY_ID = process.env.B2_APPLICATION_KEY_ID
 const B2_APPLICATION_KEY = process.env.B2_APPLICATION_KEY
 const B2_BUCKET_NAME = process.env.B2_BUCKET_NAME
-const DEBUG = process.env.NODE_ENV === "development"
+const B2_BUCKET_ID = process.env.B2_BUCKET_ID
+// const DEBUG = process.env.NODE_ENV === "development"
 
-const B2ApiResponse = z.object({
+const B2ApiResponseSchema = z.object({
   authorizationToken: z.string(),
   apiInfo: z.object({
     storageApi: z.object({
@@ -15,9 +16,13 @@ const B2ApiResponse = z.object({
     }),
   }),
 })
+const B2SignedUrlResponseSchema = z.object({
+  bucketId: z.string(),
+  fileNamePrefix: z.string(),
+  authorizationToken: z.string(),
+})
 
 async function getB2Credentials() {
-  //   console.log("Attempting B2 auth...")
   const authString = Buffer.from(
     `${B2_APPLICATION_KEY_ID}:${B2_APPLICATION_KEY}`
   ).toString("base64")
@@ -37,116 +42,64 @@ async function getB2Credentials() {
   }
 
   const data = await response.json()
+  return B2ApiResponseSchema.parse(data)
+}
 
-  //   console.log("Got B2 response:", {
-  //     accountId: data.accountId,
-  //     capabilities: data.apiInfo?.storageApi?.capabilities,
-  //     bucketName: data.apiInfo?.storageApi?.bucketName,
-  //     downloadUrl: data.apiInfo?.storageApi?.downloadUrl,
-  //   })
-
-  return B2ApiResponse.parse(data)
+async function getSignedUrl(fileName: string, expiresInSeconds: number) {
+  const credentials = await getB2Credentials()
+  const fetchUrl = `${credentials.apiInfo.storageApi.apiUrl}/b2api/v4/b2_get_download_authorization`
+  console.log("Fetching signed URL from:", fetchUrl)
+  const response = await fetch(
+    fetchUrl,
+    {
+      method: "POST",
+      headers: {
+        Authorization: credentials.authorizationToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        bucketId: B2_BUCKET_ID,
+        fileNamePrefix: fileName,
+        validDurationInSeconds: expiresInSeconds,
+      }),
+    }
+  )
+  if (!response.ok) {
+    console.error("Failed to get signed URL:", response.status, response.statusText)
+    throw new Error("Failed to get signed URL")
+  }
+  const body = await response.json()
+  return B2SignedUrlResponseSchema.parse(body)
 }
 
 const LoaderParams = z.object({
   fileName: z.string().min(1, "File name is required"),
 })
 
-function getContentType(fileName: string) {
-  const ext = fileName.split(".").pop()?.toLowerCase()
-  switch (ext) {
-    case "jpg":
-    case "jpeg":
-      return "image/jpeg"
-    case "png":
-      return "image/png"
-    case "mp3":
-      return "audio/mpeg"
-    default:
-      return "application/octet-stream"
-  }
-}
-
-function formatSize(bytes: string | null): string {
-  if (!bytes) return "unknown size"
-  const mebibytes = Math.round(parseInt(bytes) / (1024 * 1024))
-  return `${mebibytes} MiB`
-}
-
-function parseRange(range: string | null) {
-  if (!range) return null
-  const [start, end] = range.replace("bytes=", "").split("-").map(Number)
-  const chunkSize = end ? end - start + 1 : null
-  return { start, end, chunkSize }
-}
-
 export async function loader({ request, params }: LoaderFunctionArgs) {
   try {
-    const userAgent = request.headers.get("user-agent") || "unknown"
+    const { fileName } = LoaderParams.parse(params)
+    const signedUrlAuth = await getSignedUrl(fileName, 60 * 5) // 5 minutes
     const range = request.headers.get("range")
-    const rangeDetails = parseRange(range)
-    const isStreamingRequest = !!range
-
-    console.log("\n=== File Request ===", {
+    console.log("\n=== File Request ===\n", {
       timestamp: new Date().toISOString(),
-      file: params.fileName,
-      userAgent: userAgent.slice(0, 50),
-      isStreaming: isStreamingRequest,
-      range: rangeDetails
-        ? `${rangeDetails.start}-${rangeDetails.end}`
-        : "full file",
-      ip: request.headers.get("x-forwarded-for") || "unknown",
+      fileName,
+      range: request.headers.get("range"),
     })
 
-    const { fileName } = LoaderParams.parse(params)
     const credentials = await getB2Credentials()
-    const fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}`
-
-    const response = await fetch(fileUrl, {
+    const fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}?Authorization=${signedUrlAuth.authorizationToken}`
+    console.log("Redirecting to B2 signed URL:", fileUrl)
+    return new Response(null, {
+      status: 302,
       headers: {
-        ...Object.fromEntries(request.headers),
-        Authorization: credentials.authorizationToken,
+        Location: fileUrl,
       },
     })
-
-    if (response.ok) {
-      console.log("Transfer started from B2:", {
-        file: fileName,
-        totalSize: formatSize(response.headers.get("content-length")),
-        chunkSize: rangeDetails
-          ? formatSize(String(rangeDetails.chunkSize))
-          : "N/A",
-        type: isStreamingRequest ? "streaming" : "full download",
-        range: rangeDetails
-          ? `${rangeDetails.start}-${rangeDetails.end}`
-          : "full file",
-        userAgent: userAgent.slice(0, 50),
-      })
-    }
-
-    if (!response.ok) {
-      const errorBody = await response.text() // Get the error message
-      console.error("B2 Error:", {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers),
-        url: fileUrl,
-        errorBody, // Log the actual error message
-      })
-      throw new Error(
-        `B2 responded with ${response.status}: ${response.statusText} - ${errorBody}`
-      )
-    }
-
-    return new Response(response.body, {
-      status: response.status,
-      headers: response.headers,
-    })
   } catch (error) {
-    console.error("Error in file loader:", error)
-    return new Response(
-      `Error loading file: ${error instanceof Error ? error.message : "Unknown error"}`,
-      { status: 500 }
-    )
+    const errorMessage =
+      error instanceof Error ? error.message : "Failed to redirect to a B2 signed URL"
+    console.error(errorMessage)
+    return new Response(errorMessage, { status: 500 })
   }
 }
