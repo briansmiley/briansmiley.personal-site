@@ -1,4 +1,6 @@
-import { Link } from "@remix-run/react"
+"use client"
+
+import Link from "next/link"
 import { LuCopy, LuMail } from "react-icons/lu"
 import FrameworkIcon from "../FrameworkIcon/FrameworkIcon"
 import { useToast } from "~/hooks/use-toast"
@@ -10,7 +12,7 @@ export default function Info() {
     <div className="flex w-full flex-col items-start justify-center">
       <Link
         className="flex h-8 items-center justify-start hover:underline"
-        to="/resume.pdf"
+        href="/resume.pdf"
         target="_blank"
         rel="noopener noreferrer"
       >

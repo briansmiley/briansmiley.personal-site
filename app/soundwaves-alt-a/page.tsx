@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react"
+import Link from "next/link"
 import { FaSpotify } from "react-icons/fa6"
 import { mixes, playlists } from "~/data/soundwaves"
 
@@ -25,7 +25,7 @@ export default function SoundwavesA() {
           {mixes.map((mix, i) => (
             <Link
               key={mix.slug}
-              to={`/soundwaves/${mix.slug}`}
+              href={`/soundwaves/${mix.slug}`}
               className="group"
             >
               <div
@@ -64,7 +64,7 @@ export default function SoundwavesA() {
           {playlists.map((playlist) => (
             <Link
               key={playlist.slug}
-              to={`/soundwaves/${playlist.slug}`}
+              href={`/soundwaves/${playlist.slug}`}
               className="group flex items-start gap-3 rounded-lg border border-border p-4 transition-colors hover:bg-muted"
             >
               <FaSpotify className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />

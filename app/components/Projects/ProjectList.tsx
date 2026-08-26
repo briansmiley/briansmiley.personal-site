@@ -1,3 +1,5 @@
+"use client"
+
 import { ProjectType } from "~/lib/types"
 import { useBreakpoint } from "use-breakpoint"
 import { BREAKPOINTS } from "~/lib/data"

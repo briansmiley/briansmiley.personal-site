@@ -1,9 +1,12 @@
+"use client"
+
 import { useState, useRef, useEffect } from "react"
-import { Link } from "@remix-run/react"
+import Link from "next/link"
 import { LuPlay, LuPause, LuDownload, LuLink, LuCheck } from "react-icons/lu"
 import { FaSpotify } from "react-icons/fa6"
 import SpotifyIFrame from "./SpotifyIFrame"
 import { useMediaQuery } from "usehooks-ts"
+import { useMounted } from "~/hooks/use-mounted"
 
 interface AudioPlayerProps {
   fileName: string
@@ -32,15 +35,14 @@ export default function AudioPlayer({
   const [isSeeking, setIsSeeking] = useState(false)
   const [showSpotify, setShowSpotify] = useState(defaultShowSpotify)
   const [hasError, setHasError] = useState(false)
-  const [preload, setPreload] = useState<"none" | "metadata">("none")
   const [isImageModalOpen, setIsImageModalOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const isMobile = useMediaQuery("(max-width: 425px)")
 
-  useEffect(() => {
-    setPreload(isMobile ? "none" : "metadata")
-  }, [isMobile])
+  const mounted = useMounted()
+  // "none" on the server and first client render; upgrade to "metadata" on desktop after hydration.
+  const preload: "none" | "metadata" = mounted && !isMobile ? "metadata" : "none"
 
   useEffect(() => {
     const audio = audioRef.current
@@ -212,7 +214,7 @@ export default function AudioPlayer({
               </button>
               {slug ? (
                 <Link
-                  to={`/soundwaves/${slug}`}
+                  href={`/soundwaves/${slug}`}
                   className="text-lg font-semibold hover:underline"
                 >
                   {title}

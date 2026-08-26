@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react"
+import Link from "next/link"
 import { ProjectType } from "~/lib/types"
 import { FaGithub } from "react-icons/fa6"
 import FrameworkIcon from "../FrameworkIcon/FrameworkIcon"
@@ -19,7 +19,7 @@ export default function ProjectThumbnail2({
       <div className="grid h-full grid-cols-2 gap-2 rounded-md border-2 border-darkblue p-1">
         <div className="flex items-center justify-center">
           <Link
-            to={project.url}
+            href={project.url}
             className="relative aspect-square h-full overflow-hidden"
             rel="noopener noreferrer"
             target="_blank"
@@ -35,7 +35,7 @@ export default function ProjectThumbnail2({
           <div className="flex flex-col gap-1">
             <div className="flex flex-row justify-between">
               <Link
-                to={project.url}
+                href={project.url}
                 className="text-lg font-semibold underline lg:text-xl"
                 rel="noopener noreferrer"
                 target="_blank"

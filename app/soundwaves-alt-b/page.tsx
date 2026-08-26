@@ -1,8 +1,8 @@
-import { Link } from "@remix-run/react"
+import Link from "next/link"
 import { FaSpotify } from "react-icons/fa6"
 import { mixes, playlists } from "~/data/soundwaves"
 
-export default function SoundwavesIndex() {
+export default function SoundwavesB() {
   return (
     <div className="mx-auto max-w-5xl px-4 pb-12">
       {/* Header */}
@@ -18,25 +18,25 @@ export default function SoundwavesIndex() {
 
       {/* Mixes — card grid with overlay text */}
       <section className="mb-16">
-        <h2 className="font-playfair text-2xl font-semibold tracking-wide">
+        <h2 className="mb-6 font-playfair text-2xl font-semibold tracking-wide">
           Mixes
         </h2>
-        <p className="mb-6 mt-1 text-sm text-muted-foreground">
-          Hand-edited mixes with more deliberate song truncation and transitions.
-        </p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {mixes.map((mix) => (
             <Link
               key={mix.slug}
-              to={`/soundwaves/${mix.slug}`}
+              href={`/soundwaves/${mix.slug}`}
               className="group relative overflow-hidden rounded-lg"
             >
+              {/* Cover art fills the card */}
               <img
                 src={mix.imageUrl}
                 alt={mix.title}
                 className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
-              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black via-black/40 via-40% to-transparent p-5">
+
+              {/* Gradient overlay with text */}
+              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/80 via-black/30 to-transparent p-5">
                 <h3 className="font-playfair text-xl font-bold text-white">
                   {mix.title}
                 </h3>
@@ -51,37 +51,34 @@ export default function SoundwavesIndex() {
         </div>
       </section>
 
-      {/* Playlists — list with dividers */}
+      {/* Playlists — horizontal list with dividers */}
       <section>
-        <h2 className="font-playfair text-2xl font-semibold tracking-wide">
+        <h2 className="mb-6 font-playfair text-2xl font-semibold tracking-wide">
           Playlists
         </h2>
-        <p className="mb-6 mt-1 text-sm text-muted-foreground">
-          Raw Spotify playlists without mixing.
-        </p>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="divide-y divide-border">
           {playlists.map((playlist) => (
             <Link
               key={playlist.slug}
-              to={`/soundwaves/${playlist.slug}`}
-              className="group relative overflow-hidden rounded-lg"
+              href={`/soundwaves/${playlist.slug}`}
+              className="group flex items-center justify-between gap-4 py-4 transition-colors hover:bg-muted/50"
             >
-              <img
-                src={playlist.imageUrl}
-                alt={playlist.name}
-                className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-              <FaSpotify className="absolute right-3 top-3 h-6 w-6 text-green-500 drop-shadow-lg" />
-              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black via-black/40 via-40% to-transparent p-5">
-                <h3 className="font-playfair text-xl font-bold text-white">
-                  {playlist.name}
-                </h3>
-                {playlist.blurb && (
-                  <p className="mt-1 text-sm leading-snug text-gray-200">
-                    {playlist.blurb}
-                  </p>
-                )}
+              <div className="flex items-center gap-3">
+                <FaSpotify className="h-5 w-5 shrink-0 text-green-600" />
+                <div>
+                  <h3 className="font-playfair font-semibold group-hover:underline">
+                    {playlist.name}
+                  </h3>
+                  {playlist.blurb && (
+                    <p className="text-sm text-muted-foreground">
+                      {playlist.blurb}
+                    </p>
+                  )}
+                </div>
               </div>
+              <span className="text-sm text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
+                &rarr;
+              </span>
             </Link>
           ))}
         </div>

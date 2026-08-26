@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs } from "@remix-run/node"
+import type { NextRequest } from "next/server"
 import { z } from "zod"
 
 const B2_APPLICATION_KEY_ID = process.env.B2_APPLICATION_KEY_ID
@@ -73,21 +73,30 @@ async function getSignedUrl(fileName: string, expiresInSeconds: number, wantsDow
   return { signedUrl: B2SignedUrlResponseSchema.parse(body), credentials }
 }
 
-const LoaderParams = z.object({
+const RouteParams = z.object({
   fileName: z.string().min(1, "File name is required"),
 })
 
-export async function loader({ request, params }: LoaderFunctionArgs) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ fileName: string }> }
+) {
   try {
-    const { fileName } = LoaderParams.parse(params)
-    const url = new URL(request.url)
-    const wantsDownload = url.searchParams.get("download") === "true"
+    const { fileName } = RouteParams.parse(await params)
+    const wantsDownload =
+      request.nextUrl.searchParams.get("download") === "true"
 
-    const { signedUrl, credentials } = await getSignedUrl(fileName, 60 * 5, wantsDownload)
+    const { signedUrl, credentials } = await getSignedUrl(
+      fileName,
+      60 * 5,
+      wantsDownload
+    )
 
     let fileUrl = `${credentials.apiInfo.storageApi.downloadUrl}/file/${B2_BUCKET_NAME}/${fileName}?Authorization=${signedUrl.authorizationToken}`
     if (wantsDownload) {
-      const disposition = encodeURIComponent(`attachment; filename="${fileName}"`)
+      const disposition = encodeURIComponent(
+        `attachment; filename="${fileName}"`
+      )
       fileUrl += `&b2ContentDisposition=${disposition}`
     }
     return new Response(null, {
@@ -98,7 +107,9 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
     })
   } catch (error) {
     const errorMessage =
-      error instanceof Error ? error.message : "Failed to redirect to a B2 signed URL"
+      error instanceof Error
+        ? error.message
+        : "Failed to redirect to a B2 signed URL"
     console.error(errorMessage)
     return new Response(errorMessage, { status: 500 })
   }

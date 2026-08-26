@@ -21,7 +21,7 @@ const config = {
       },
     },
     fontFamily: {
-      playfair: ['"Playfair Display"', "serif"],
+      playfair: ["var(--font-playfair)", '"Playfair Display"', "serif"],
     },
     extend: {
       colors: {
