@@ -84,6 +84,15 @@ export const mixes: Mix[] = [
 
 export const playlists: Playlist[] = [
   {
+    slug: "sprawl",
+    name: "Sprawl",
+    imageUrl: "/thumbnails/ssw/ssw-sprawl.jpg",
+    spotifyPlaylistId: "6rl80ZEJVsS49lFxkDSB4g",
+    trackCount: 12,
+    blurb: null,
+    description: null,
+  },
+  {
     slug: "wanderers",
     name: "Wanderers",
     imageUrl: "/thumbnails/ssw/ssw-wanderers.jpg",
