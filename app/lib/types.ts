@@ -5,7 +5,7 @@ export type ProjectType = {
   thumbnail: string
   blurb: string
   url: string
-  github: string
+  github?: string
   icons?: string[]
 }
 
