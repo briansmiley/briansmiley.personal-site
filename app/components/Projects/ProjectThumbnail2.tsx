@@ -42,14 +42,16 @@ export default function ProjectThumbnail2({
               >
                 {project.title}
               </Link>
-              <a
-                className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub className="h-5 w-5" />
-              </a>
+              {project.github && (
+                <a
+                  className="text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100"
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaGithub className="h-5 w-5" />
+                </a>
+              )}
             </div>
             <p className="text-sm">{project.blurb}</p>
           </div>

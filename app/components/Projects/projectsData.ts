@@ -57,6 +57,20 @@ export const p5Projects: ProjectType[] = [
 
 export const reactProjects: ProjectType[] = [
   {
+    title: "Nertz",
+    thumbnail: "thumbnails/nertz.png",
+    blurb: "Real-time multiplayer Nertz with bots and voice chat.",
+    url: "https://nertz.binarysmile.com",
+    icons: ["claude"],
+  },
+  {
+    title: "Semantle Duel",
+    thumbnail: "thumbnails/semantle_duel.png",
+    blurb: "Head-to-head Semantle: race or collaborate with friends.",
+    url: "https://semantle-duel.binarysmile.com",
+    icons: ["claude"],
+  },
+  {
     title: "Calibrated",
     thumbnail: "thumbnails/calibrated.png",
     blurb:
