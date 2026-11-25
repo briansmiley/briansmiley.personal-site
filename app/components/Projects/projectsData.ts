@@ -61,6 +61,7 @@ export const reactProjects: ProjectType[] = [
     thumbnail: "thumbnails/nertz.png",
     blurb: "Real-time multiplayer Nertz with bots and voice chat.",
     url: "https://nertz.binarysmile.com",
+    github: "https://github.com/briansmiley/nertz",
     icons: ["claude"],
   },
   {
@@ -68,6 +69,7 @@ export const reactProjects: ProjectType[] = [
     thumbnail: "thumbnails/semantle_duel.png",
     blurb: "Head-to-head Semantle: race or collaborate with friends.",
     url: "https://semantle-duel.binarysmile.com",
+    github: "https://github.com/briansmiley/semantle-duel",
     icons: ["claude"],
   },
   {
